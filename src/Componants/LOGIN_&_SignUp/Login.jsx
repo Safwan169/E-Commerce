@@ -62,8 +62,8 @@ const Login = () => {
 
             <br />
             <br />
-            <div className={toggle ? 'cont s--signup' : 'cont'}>
-                <form onSubmit={handleSubmitSignin} className="form sign-in">
+            <div className={ toggle ? 'cont s--signup' : 'cont'}>
+                <form onSubmit={handleSubmitSignin} className="form    sign-in">
                     <h2>Welcome</h2>
                     <label>
                         <span>Email</span>
@@ -83,7 +83,7 @@ const Login = () => {
 
                 </form>
                 <div className="sub-cont">
-                    <div className="img">
+                    <div className="img ">
                         <div className="img__text m--up">
 
                             <h3>Don't have an account? Please Sign up!</h3>
@@ -97,7 +97,7 @@ const Login = () => {
                             <span className="m--in">Sign In</span>
                         </div>
                     </div>
-                    <form onSubmit={handleSubmitSignUp} className="form sign-up">
+                    <form onSubmit={handleSubmitSignUp} className="form  ">
                         <h2>Create your Account</h2>
                         <label>
                             <span>Name</span>
