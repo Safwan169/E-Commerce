@@ -1,57 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+// import './index'
+import './style.css'
+import './index.js'
+
+
+
 
 const Register = () => {
-    return (
-        <div>
-            <section></section>
-            <section className="loginOrSignupField anim03 anim04c">
-                <aside className="loginOrSignupFieldInner anim03 anim04c">
 
-                    <div className="switchButtonField">
-                        <div className="switchButtonOuter">
-                            <div className="switchButtonInner anim03 anim04c"></div>
-                        </div>
-                    </div>
 
-                    <form className="emailForm" method="post" action="musabProje">
-                        <input type="text" id="email" className="input" value="" placeholder="E-mail">
-                            <input type="password" id="password" className="input" value="" placeholder="Password">
-                                <div id="rememberMeField">
-                                    <label>
-                                        <input type="checkbox" id="rememberMe" />
-                                        <span></span>
-                                    </label>
-                                </div>
-                                <input type="submit" id="submit" value="Join" />
-                    </form>
+   const [toggle2,setToggle2]=useState(false)
 
-                            <a href="#" className="socialButton facebook" target="_blank">Facebook</a>
-                            <a href="#" className="socialButton twitter" target="_blank">Twitter</a>
-                            <a href="#" className="socialButton googleplus" target="_blank">Google +</a>
 
-                </aside>
 
-                        <nav className="navigations">
-                            <ul>
-                                <li>
-                                    <span className="normal">normal</span>
-                                </li>
-                                <li>
-                                    <span className="mode01">mode 2</span>
-                                </li>
-                                <li>
-                                    <span className="mode02">mode 3</span>
-                                </li>
-                                <li className="designer">
-                                    <a href="https://creativemarket.com/mselmany" target="_blank">
-                                        <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t5/1117447_100001638983788_1284464661_q.jpg" alt=""/>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-            </section>
-        </div>
-                );
-};
+   return (
+      <div className="wrapper mx-auto">
+         <div className="title-text">
+           { toggle2? <div className="title  signup">Signup Form</div>:<div className="title login">Login Form</div>}
+         </div>
+         <div className="form-container">
+            <div className="slide-controls">
+               <input type="radio" name="slide" id="login" checked />
+               <input type="radio" name="slide" id="signup" />
+               <label onClick={()=>setToggle2(false)} for="login" className="slide login">Login</label>
+               <label onClick={()=>setToggle2(true)} for="signup" className="slide signup">Signup</label>
+               <div className="slider-tab"></div>
+            </div>
+            <div className="form-inner">
+               <form action="#" className={ toggle2?'login border -ml-[50%] border-red-500':'login border -ml-[0%] border-red-500' }>
+                  <div className="field">
+                     <input className='text-left' type="text" placeholder="Email Address" required />
+                  </div>
+                  <div className="field ">
+                     <input className='text-left' type="password" placeholder="Password" required />
+                  </div>
+                  <div className="pass-link"><a href="#">Forgot password?</a></div>
+                  <div className="field btn">
+                     <div className="btn-layer"></div>
+                     <input type="submit" value="Login" />
+                  </div>
+                  <div className="signup-link">Not a member? <a href="">Signup now</a></div>
+               </form>
+               <form action="#" className="signup border  border-red-400">
+                  <div className="field">
+                     <input className='text-left' type="text" placeholder="Email Address" required />
+                  </div>
+                  <div className="field">
+                     <input className='text-le' type="password" placeholder="Password" required />
+                  </div>
+                  <div className="field">
+                     <input type="password" placeholder="Confirm password" required />
+                  </div>
+                  <div className="field btn">
+                     <div className="btn-layer"></div>
+                     <input type="submit" value="Signup" />
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
 
-                export default Register;
+   );
+}
+
+
+
+
+
+export default Register;
