@@ -173,7 +173,7 @@ const Login = () => {
                             <div className="pass-link"><a href="#">Forgot password?</a></div>
                             <div className="field btn">
                                 <div className="btn-layer"></div>
-                                <input type="" value="Login" />
+                                <input type="submit" value="Login" />
                             </div>
                             <div className="signup-link">Not a member? <a href="">Signup now</a></div>
                         </form>
@@ -193,7 +193,7 @@ const Login = () => {
                            
                             <div className="field btn">
                                 <div className="btn-layer"></div>
-                                <input  type="" value="Signup" />
+                                <input  type="submit" value="Signup" />
                             </div>
                         </form>
                     </div>

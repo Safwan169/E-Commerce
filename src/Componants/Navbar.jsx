@@ -107,7 +107,7 @@ const handleSignOUt=()=>{
                 <MenuItem>
                   {user ? <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Your Profile
-                  </a> : ""}
+                  </a> : <span></span>}
                 </MenuItem>
                 {/* <MenuItem>
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
@@ -117,7 +117,7 @@ const handleSignOUt=()=>{
                 <MenuItem>
                   {user ? <a onClick={handleSignOUt} href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Sign out
-                  </a> : <NavLink href="/login" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  </a> : <NavLink to="/login" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Sign In
                   </NavLink>}
                 </MenuItem>
