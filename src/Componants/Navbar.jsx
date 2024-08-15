@@ -4,6 +4,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useContext } from "react";
 import { context } from "./Authentication";
 import { CgProfile } from "react-icons/cg";
+import { getAuth, signOut } from "firebase/auth";
+import Swal from "sweetalert2";
 
 
 
@@ -19,7 +21,22 @@ const navLinks = [
 const Navbar = () => {
 
 
-  const { user } = useContext(context)
+  const { user,setLoading,loading } = useContext(context)
+  const auth = getAuth();
+const handleSignOUt=()=>{
+  signOut(auth).then(() => {
+
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Successfully SignOut",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    setLoading(!loading)
+
+})
+}
 
   return (
     <Disclosure as="nav" className="bg-gray-800 text-white">
@@ -78,8 +95,8 @@ const Navbar = () => {
                   {user ? <img
                     alt=""
                     src={`${user?.photoURL}`}
-                    className="h-8  w-8 rounded-full"
-                  /> : <CgProfile className="h-8 w-8  rounded-full text-gray-400" />
+                    className="h-full w-full rounded-full"
+                  /> : <CgProfile className="h-8 w-10  rounded-full text-gray-400" />
                   }
                 </MenuButton>
               </div>
@@ -98,11 +115,11 @@ const Navbar = () => {
                     </a>
                   </MenuItem> */}
                 <MenuItem>
-                  {user ? <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  {user ? <a onClick={handleSignOUt} href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Sign out
-                  </a> : <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                  </a> : <NavLink href="/login" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                     Sign In
-                  </a>}
+                  </NavLink>}
                 </MenuItem>
               </MenuItems>
             </Menu>

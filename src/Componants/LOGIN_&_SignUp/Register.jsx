@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 // import './index'
 import './style.css'
-import './index.js'
 
 
 
@@ -16,7 +15,7 @@ const Register = () => {
    return (
       <div className="wrapper mx-auto">
          <div className="title-text">
-           { toggle2? <div className="title  signup">Signup Form</div>:<div className="title login">Login Form</div>}
+           { toggle2? <div className=" title signup">Signup Form</div>:<div className="title login">Login Form</div>}
          </div>
          <div className="form-container">
             <div className="slide-controls">
@@ -27,7 +26,7 @@ const Register = () => {
                <div className="slider-tab"></div>
             </div>
             <div className="form-inner">
-               <form action="#" className={ toggle2?'login border -ml-[50%] border-red-500':'login border -ml-[0%] border-red-500' }>
+               <form action="#" className={ toggle2?'login  -ml-[50%]':'login  -ml-[0%]' }>
                   <div className="field">
                      <input className='text-left' type="text" placeholder="Email Address" required />
                   </div>
@@ -41,12 +40,12 @@ const Register = () => {
                   </div>
                   <div className="signup-link">Not a member? <a href="">Signup now</a></div>
                </form>
-               <form action="#" className="signup border  border-red-400">
+               <form action="#" className="signup ">
                   <div className="field">
                      <input className='text-left' type="text" placeholder="Email Address" required />
                   </div>
                   <div className="field">
-                     <input className='text-le' type="password" placeholder="Password" required />
+                     <input className='text-left' type="password" placeholder="Password" required />
                   </div>
                   <div className="field">
                      <input type="password" placeholder="Confirm password" required />

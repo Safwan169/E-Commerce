@@ -2,17 +2,21 @@ import React, { useContext, useState } from 'react';
 import { context } from '../Authentication';
 import Swal from 'sweetalert2'
 import '././style.css'
+import { getAuth, updateProfile } from 'firebase/auth';
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const Login = () => {
     const [toggle, setToggle] = useState(false)
-    const { signIN, signUp } = useContext(context)
+    const [toggle2, setToggle2] = useState(false)
+    const navigate = useNavigate();
+    const { signIN, signUp,loading,setLoading } = useContext(context)
 
 
 
-    
+
 
     const handleSubmitSignin = (e) => {
         e.preventDefault()
@@ -34,40 +38,51 @@ const Login = () => {
                         timer: 1500
                     });
                 }
+                navigate('/')
+
             })
-        }
+    }
 
-            const handleSubmitSignUp = (e) => {
-                e.preventDefault()
-                const email = e.target.email.value
-                const password = e.target.password.value
-                signUp(email, password)
-                    .then((userCredential) => {
-                        // Signed in 
-                        const user = userCredential.user;
-    
-    
-    
-                        if (user) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: "Successfully Register",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        }
-                    })
-            }
+    const handleSubmitSignUp = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const name = e.target.name.value
+        const photoURL = e.target.photoURL.value
+        signUp(email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                const auth = getAuth();
 
-    
+                    updateProfile(auth.currentUser, {
+                        displayName: `${name}`, photoURL: `${photoURL}`
+                      }).then(() => {
+                      setLoading(!loading)
+                   
+                      })
+
+                if (user) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Successfully Register",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                navigate('/')
+            })
+    }
+
+
     return (
         <>
 
-
+{/* only for large devices  */}
             <br />
             <br />
-            <div className={ toggle ? 'hidden lg:block cont s--signup' : 'hidden lg:block cont'}>
+            <div className={toggle ? 'hidden lg:block cont s--signup' : 'hidden lg:block cont'}>
                 <form onSubmit={handleSubmitSignin} className="form    sign-in">
                     <h2>Welcome</h2>
                     <label>
@@ -122,59 +137,69 @@ const Login = () => {
                                 name='password'
                                 type="password" />
                         </label>
+                        <label>
+                            <span>Photo URL</span>
+                            <input
+                                name='photoURL'
+                                type="url" />
+                        </label>
                         <button type="" className="submit">Sign Up</button>
 
                     </form >
                 </div>
             </div>
 
+{/* for medium & for phones only  */}
+            <div className="wrapper lg:hidden mx-auto">
+                <div className="title-text">
+                    {toggle2 ? <div className=" title signup">Signup Form</div> : <div className="title login">Login Form</div>}
+                </div>
+                <div className="form-container">
+                    <div className="slide-controls">
+                        <input type="radio" name="slide" id="login" checked />
+                        <input type="radio" name="slide" id="signup" />
+                        <label onClick={() => setToggle2(false)} for="login" className="slide login">Login</label>
+                        <label onClick={() => setToggle2(true)} for="signup" className="slide signup">Signup</label>
+                        <div className="slider-tab"></div>
+                    </div>
+                    <div className="form-inner">
+                        <form onSubmit={handleSubmitSignin} action="#" className={toggle2 ? 'login  -ml-[50%]' : 'login  -ml-[0%]'}>
+                            <div className="field">
+                                <input className='text-left' type="text" placeholder="Email Address" name='email' required />
+                            </div>
+                            <div className="field ">
+                                <input className='text-left' type="password" placeholder="Password" name='password' required />
+                            </div>
+                            <div className="pass-link"><a href="#">Forgot password?</a></div>
+                            <div className="field btn">
+                                <div className="btn-layer"></div>
+                                <input type="" value="Login" />
+                            </div>
+                            <div className="signup-link">Not a member? <a href="">Signup now</a></div>
+                        </form>
+                        <form onSubmit={handleSubmitSignUp} action="#" className="signup ">
+                        <div className="field">
+                                <input className='text-left' name='name' type="text" placeholder="Your Name" required />
+                            </div>
+                            <div className="field">
+                                <input className='text-left' type="email" placeholder="Email Address" name='email' required />
+                            </div>
+                            <div className="field">
+                                <input className='text-left' type="password" placeholder="Password" name='password' required />
+                            </div>
+                            <div className="field">
+                                <input className='text-left' type="url" name='photoURL' placeholder="Photo URL" required />
+                            </div>
+                           
+                            <div className="field btn">
+                                <div className="btn-layer"></div>
+                                <input  type="" value="Signup" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-            <div className="wrapper mx-auto">
-         <div className="title-text">
-            <div className="title login">Login Form</div>
-            <div className="title signup">Signup Form</div>
-         </div>
-         <div className="form-container">
-            <div className="slide-controls">
-               <input type="radio" name="slide" id="login" checked />
-               <input type="radio" name="slide" id="signup" />
-               <label for="login" className="slide login">Login</label>
-               <label for="signup" className="slide signup">Signup</label>
-               <div className="slider-tab"></div>
-            </div>
-            <div className="form-inner">
-               <form action="#" className="login">
-                  <div className="field">
-                     <input className='text-left' type="text" placeholder="Email Address" required />
-                  </div>
-                  <div className="field ">
-                     <input className='text-left' type="password" placeholder="Password" required />
-                  </div>
-                  <div className="pass-link"><a href="#">Forgot password?</a></div>
-                  <div className="field btn">
-                     <div className="btn-layer"></div>
-                     <input type="submit" value="Login" />
-                  </div>
-                  <div className="signup-link">Not a member? <a href="">Signup now</a></div>
-               </form>
-               <form action="#" className="signup">
-                  <div className="field">
-                     <input className='text-left' type="text" placeholder="Email Address" required />
-                  </div>
-                  <div className="field">
-                     <input className='text-left' type="password" placeholder="Password" required />
-                  </div>
-                  <div className="field">
-                     <input type="password" placeholder="Confirm password" required />
-                  </div>
-                  <div className="field btn">
-                     <div className="btn-layer"></div>
-                     <input type="submit" value="Signup" />
-                  </div>
-               </form>
-            </div>
-         </div>
-      </div>
 
 
         </>

@@ -10,7 +10,7 @@ const provider = new GoogleAuthProvider();
 const Authentication = ({children}) => {
 const auth = getAuth(app);
 const [user,setUser]=useState()
-
+const [loading,setLoading]=useState(true)
 
 
 
@@ -29,8 +29,9 @@ const GoogleAuth=()=>{
 
 useEffect(()=>{
    const unsubscribe= onAuthStateChanged(auth, (user) => {
+    setUser(user)
+
         if (user) {
-        setUser(user)
         
         } else {
           // User is signed out
@@ -39,13 +40,15 @@ useEffect(()=>{
       });
       return unsubscribe
 
-},[])
+},[!loading])
 
 const data={
     signUp,
     signIN,
     GoogleAuth,
-    user
+    user,
+    loading,
+    setLoading
     
 }
 
