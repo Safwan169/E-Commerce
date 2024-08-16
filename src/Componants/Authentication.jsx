@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from '../../firebase.config';
 import { onAuthStateChanged } from "firebase/auth";
 import axios from 'axios';
@@ -23,9 +23,6 @@ const signUp=(email,password)=>{
 const signIN=(email,password)=>{
 return signInWithEmailAndPassword(auth, email, password)
 
-}
-const GoogleAuth=()=>{
-    signInWithPopup(auth, provider)
 }
 
 useEffect(()=>{
@@ -64,7 +61,7 @@ useEffect(() => {
 const data={
     signUp,
     signIN,
-    GoogleAuth,
+    
     user,
     loading,
     setLoading,

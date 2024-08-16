@@ -2,17 +2,23 @@ import React, { useContext, useState } from 'react';
 import { context } from '../Authentication';
 import Swal from 'sweetalert2'
 import '././style.css'
-import { getAuth, updateProfile } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 
-
+const handleGoogle = () => {
+    const auth = getAuth()
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(auth, provider)
+    console.log('dsdfsdf')
+}
 
 const Login = () => {
     const [toggle, setToggle] = useState(false)
     const [toggle2, setToggle2] = useState(false)
     const navigate = useNavigate();
-    const { signIN, signUp,loading,setLoading } = useContext(context)
+    const { signIN, signUp, loading, setLoading } = useContext(context)
 
 
 
@@ -55,12 +61,12 @@ const Login = () => {
                 const user = userCredential.user;
                 const auth = getAuth();
 
-                    updateProfile(auth.currentUser, {
-                        displayName: `${name}`, photoURL: `${photoURL}`
-                      }).then(() => {
-                      setLoading(!loading)
-                   
-                      })
+                updateProfile(auth.currentUser, {
+                    displayName: `${name}`, photoURL: `${photoURL}`
+                }).then(() => {
+                    setLoading(!loading)
+
+                })
 
                 if (user) {
                     Swal.fire({
@@ -79,7 +85,7 @@ const Login = () => {
     return (
         <>
 
-{/* only for large devices  */}
+            {/* only for large devices  */}
             <br />
             <br />
             <div className={toggle ? 'hidden lg:block cont s--signup' : 'hidden lg:block cont'}>
@@ -100,8 +106,13 @@ const Login = () => {
                     </label>
                     <p className="forgot-pass">Forgot password?</p>
                     <button className="submit">Sign In</button>
+                    <button onClick={handleGoogle} type="" className="text-black border border-solid font-semibold bg-white  items-center "><FcGoogle size={25} className=' absolute left-1/2 -translate-x-16 ' />Google</button>
+
 
                 </form>
+                <div>
+
+                </div>
                 <div className="sub-cont">
                     <div className="img ">
                         <div className="img__text m--up">
@@ -145,11 +156,13 @@ const Login = () => {
                         </label>
                         <button type="" className="submit">Sign Up</button>
 
+
                     </form >
+
                 </div>
             </div>
 
-{/* for medium & for phones only  */}
+            {/* for medium & for phones only  */}
             <div className="wrapper lg:hidden mx-auto">
                 <div className="title-text">
                     {toggle2 ? <div className=" title signup">Signup Form</div> : <div className="title login">Login Form</div>}
@@ -174,11 +187,20 @@ const Login = () => {
                             <div className="field btn">
                                 <div className="btn-layer"></div>
                                 <input type="submit" value="Login" />
+                                <div>
+                                    sdafsdf
+                                </div>
+
+
                             </div>
-                            <div className="signup-link">Not a member? <a href="">Signup now</a></div>
+                            <div className='mt-4  '>
+                                <button onClick={handleGoogle} type="" className="text-black border w-full border-solid font-semibold bg-white  items-center "><FcGoogle size={25} className={toggle2?' relative hidden translate-x-40 ':"absolute  block  left-1/2 -translate-x-14"} />Google</button>
+
+                            </div>
+                            <div className="signup-link">Not  member? <a href="">Signup now</a></div>
                         </form>
                         <form onSubmit={handleSubmitSignUp} action="#" className="signup ">
-                        <div className="field">
+                            <div className="field">
                                 <input className='text-left' name='name' type="text" placeholder="Your Name" required />
                             </div>
                             <div className="field">
@@ -190,10 +212,10 @@ const Login = () => {
                             <div className="field">
                                 <input className='text-left' type="url" name='photoURL' placeholder="Photo URL" required />
                             </div>
-                           
+
                             <div className="field btn">
                                 <div className="btn-layer"></div>
-                                <input  type="submit" value="Signup" />
+                                <input type="submit" value="Signup" />
                             </div>
                         </form>
                     </div>
