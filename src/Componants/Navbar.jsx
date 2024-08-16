@@ -1,12 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { context } from "./Authentication";
 import { CgProfile } from "react-icons/cg";
 import { getAuth, signOut } from "firebase/auth";
 import Swal from "sweetalert2";
 import { BsCart4 } from "react-icons/bs";
+// import Home from "./Home";
+import axios from 'axios';
+import Home from "./Home";
 
 
 
@@ -22,7 +25,7 @@ const navLinks = [
 const Navbar = () => {
 
 
-  const { user, setLoading, loading } = useContext(context)
+  const { user, setLoading, loading,setSearchText } = useContext(context)
   const auth = getAuth();
   const handleSignOUt = () => {
     signOut(auth).then(() => {
@@ -38,7 +41,33 @@ const Navbar = () => {
 
     })
   }
+  // const [searchData, setSearch] = useState()
 
+  const handleSearch = e => {
+    e.preventDefault()
+    const search = e.target.value
+    console.log(search)
+    // setSearch(search)
+    setSearchText(search)
+
+ 
+
+  }
+  // const data={
+  //   name:searchData
+  // }
+
+  // useEffect(() => {
+
+ 
+
+  //   axios.post(`http://localhost:5000/product`, data)
+
+  //     .then(res => Home(res.data))
+
+  // }, [searchData])
+
+ 
   return (
     <Disclosure as="nav" className="bg-gray-800 text-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -62,7 +91,7 @@ const Navbar = () => {
               <img
                 alt="Your Company"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 absolute left-[50px] md:hidden lg:hidden block w-auto"
+                className="h-8 absolute left-[45px] md:hidden lg:hidden block w-auto"
               />
             </div>
             {/* search input */}
@@ -74,10 +103,12 @@ const Navbar = () => {
                   </svg>
                 </div>
 
-                <input
+                <input onChange={handleSearch}
                   className="peer h-[40px] w-full outline-none text-[8px] text-gray-700  text-left "
                   type="text"
                   id="search"
+                  name="search"
+
                   placeholder="Search something.." />
               </div>
             </div>
@@ -102,24 +133,25 @@ const Navbar = () => {
           </div>
 
 
-              {/* search input */}
-              <div className='md:w-[25%] lg:w-[40%] h-[40px] lg:block md:block hidden  pt-[5px] mx-auto'>
-              <div className="relative flex items-center w-full h-[30px]   rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-                <div className="grid place-items-center h-full w-12 text-gray-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="lg:h-5 lg:w-5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-
-                <input
-                  className="peer h-[40px] w-full outline-none md:text-[12px] lg:text-[16px] text-gray-700  text-left "
-                  type="text"
-                  id="search"
-                  placeholder="Search something.." />
+          {/* search input */}
+          <div className='md:w-[25%] lg:w-[40%] h-[40px] lg:block md:block hidden  pt-[5px] mx-auto'>
+            <div className="relative flex items-center w-full h-[30px]   rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+              <div className="grid place-items-center h-full w-12 text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" className="lg:h-5 lg:w-5 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </div>
-            </div>
 
-            {/* search input end  */}
+              <input onChange={handleSearch}
+                className="peer h-[40px] w-full outline-none md:text-[12px] lg:text-[16px] text-gray-700  text-left "
+                type="text"
+                id="search"
+                name="search"
+                placeholder="Search something.." />
+            </div>
+          </div>
+
+          {/* search input end  */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
               type="button"

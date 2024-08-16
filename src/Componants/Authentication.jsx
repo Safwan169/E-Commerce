@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
 import { app } from '../../firebase.config';
 import { onAuthStateChanged } from "firebase/auth";
+import axios from 'axios';
 
 export const context=createContext()
 
@@ -42,13 +43,33 @@ useEffect(()=>{
 
 },[!loading])
 
+// for search data 
+const [search,setSearchText]=useState()
+const [searchData,setSearchData]=useState()
+// console.log(search)
+
+useEffect(() => {
+   
+    const data1={
+        name:search
+    }
+    console.log(search)
+
+    axios.post(`http://localhost:5000/product`, data1)
+
+      .then(res =>setSearchData(res.data))
+
+  }, [search])
+
 const data={
     signUp,
     signIN,
     GoogleAuth,
     user,
     loading,
-    setLoading
+    setLoading,
+    setSearchText,
+    searchData
     
 }
 

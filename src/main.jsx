@@ -8,6 +8,7 @@ import "./index.css";
 import Main_Layout from "./Main-Layout/Main_Layout";
 import Authentication from "./Componants/Authentication";
 import Login from "./Componants/LOGIN_&_SignUp/Login";
+import Home from "./Componants/Home";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,9 @@ const router = createBrowserRouter([
     children:[
     {  path:'login',
       element:<Login></Login>
+    },
+    {  path:'/',
+      element:<Home></Home>
     },
    
     ]
