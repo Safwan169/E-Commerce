@@ -9,6 +9,7 @@ import Main_Layout from "./Main-Layout/Main_Layout";
 import Authentication from "./Componants/Authentication";
 import Login from "./Componants/LOGIN_&_SignUp/Login";
 import Home from "./Componants/Home";
+import Load from "./Load";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       element:<Login></Login>
     },
     {  path:'/',
-      element:<Home></Home>
+      element:<Load><Home></Home></Load>
     },
    
     ]

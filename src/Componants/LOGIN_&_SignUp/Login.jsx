@@ -5,6 +5,7 @@ import '././style.css'
 import { getAuth, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+// import { BorderBeam } from "@/components/magicui/border-beam.tsx";
 
 
 const handleGoogle = () => {
@@ -187,14 +188,18 @@ const Login = () => {
                             <div className="field btn">
                                 <div className="btn-layer"></div>
                                 <input type="submit" value="Login" />
-                                <div>
-                                    sdafsdf
-                                </div>
+                              
 
 
                             </div>
                             <div className='mt-4  '>
-                                <button onClick={handleGoogle} type="" className="text-black border w-full border-solid font-semibold bg-white  items-center "><FcGoogle size={25} className={toggle2?' relative hidden translate-x-40 ':"absolute  block  left-1/2 -translate-x-14"} />Google</button>
+                                {/* <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+                                    <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
+                                        Border Beam
+                                    </span>
+                                    <BorderBeam size={250} duration={12} delay={9} />
+                                </div> */}
+                                <button onClick={handleGoogle} type="" className="text-black border w-full border-solid font-semibold bg-white  items-center "><FcGoogle size={25} className={toggle2 ? ' relative hidden translate-x-40 ' : "absolute  block  left-1/2 -translate-x-14"} />Google</button>
 
                             </div>
                             <div className="signup-link">Not  member? <a href="">Signup now</a></div>

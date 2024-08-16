@@ -43,6 +43,7 @@ useEffect(()=>{
 // for search data 
 const [search,setSearchText]=useState()
 const [searchData,setSearchData]=useState()
+const [load,setLoad]=useState(false)
 // console.log(search)
 
 useEffect(() => {
@@ -54,19 +55,23 @@ useEffect(() => {
 
     axios.post(`http://localhost:5000/product`, data1)
 
-      .then(res =>setSearchData(res.data))
+      .then(res =>{setSearchData(res.data) ,console.log(res.data)})
+      console.log(searchData)
+    //   if (searchData) {
+        setLoad(true)
+    //   }
 
   }, [search])
 
 const data={
     signUp,
     signIN,
-    
     user,
     loading,
     setLoading,
     setSearchText,
-    searchData
+    searchData,
+    load
     
 }
 
