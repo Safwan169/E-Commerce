@@ -204,13 +204,13 @@ const Home = () => {
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                            <h2 className="text-left leading-10">{data.title}</h2>
-                            <h2 className="card-title">{data.brand}</h2>
+                            <h2 className="text-left leading-10">{data?.title}</h2>
+                            <h2 className="card-title">{data?.brand}</h2>
                             <p>{data.description}</p>
-                            <p className='text-xl text-blue-400'>{data.category}</p>
+                            <p className='text-xl text-blue-400'>{data?.category}</p>
                             <p>{data.meta.createdAt}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">${data.price}</button>
+                                <button className="btn btn-primary">${data?.price}</button>
                             </div>
                         </div>
                     </div>)
