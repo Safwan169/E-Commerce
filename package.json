@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
+    "@smastrom/react-rating": "^1.5.0",
     "axios": "^1.7.4",
     "firebase": "^10.12.5",
     "localforage": "^1.10.0",

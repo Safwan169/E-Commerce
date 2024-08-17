@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { context } from './Authentication';
 import axios from 'axios';
 import { IoIosArrowForward } from "react-icons/io";
+import Date from './Date';
 
 const Home = () => {
 
@@ -18,7 +19,7 @@ const Home = () => {
         const data = {
             name: search
         }
-        axios.post('https://e-commerce-server-side-beta.vercel.app/product', data)
+        axios.post('http://localhost:5000/product', data)
             .then(res => setMain(res.data))
     }, [search, loading])
 
@@ -57,14 +58,18 @@ const Home = () => {
 
     }
 
-
+const[brand,setBrand]=useState()
+const[category,setCategory]=useState()
     const handleBrand = (e) => {
         const text = e.target.value
+        console.log(text,'brand')
 
-        const data = searchData?.filter(data => data.brand == text)
+        setBrand(text)
 
-        setMain(searchData)
-        setMain(data)
+        // const data = searchData?.filter(data => data.brand == text)
+
+        // setMain(searchData)
+        // setMain(data)
 
 
 
@@ -72,26 +77,40 @@ const Home = () => {
     }
     const handleCategory = (e) => {
         const text = e.target.value
+        console.log(text)
+        setCategory(text)
 
-        const data = main?.filter(data => data.category == text)
-        setMain(data)
+        // const data = main?.filter(data => data.category == text)
+        // setMain(data)
 
 
 
     }
 
-
+const[max,setMax]=useState()
+const[min,setMin]=useState()
     // for price
     const handlePrice = (e) => {
         e.preventDefault()
 
         const min = e.target.min.value || 0
         const max = e.target.max.value
+        // setMin(min)
+        // setMax(max)
         setMain(searchData)
+        
 
         const data = main.filter(data => data?.price > min && data?.price < max)
         setMain(data)
     }
+
+    useEffect(() => {
+        axios.post(`http://localhost:5000/dd?category=${category}&brand=${brand}`)
+        .then(res=>{setMain(res.data),console.log(res.data)})
+
+    }, [brand,category])
+
+
     const [btn, SetBtn] = useState(0)
 
 
@@ -102,10 +121,13 @@ const Home = () => {
 
     }
     useEffect(() => {
-        axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}`)
+        axios.post(`http://localhost:5000/all?size=${btn}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [btn])
+
+
+ 
 
     const handlePre = () => {
         if (parseInt(btn)!== 0) {
@@ -115,7 +137,7 @@ const Home = () => {
         }
     }
     const handleNxt = () => {
-        if (parseInt(btn)!== pagenationBttn) {
+        if (parseInt(btn)!== pagenationBttn-1) {
             SetBtn((btn)+1)
 
 
@@ -197,23 +219,7 @@ const Home = () => {
 
             <div className={main ? "grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 " : 'hidden'}>
                 {
-                    main?.map(data => <div className="card w-[300px] card-compact bg-base-100  shadow-xl">
-                        <figure>
-                            <img className='h-[200px]'
-                                src={data?.images[0]}
-                                alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                            <h2 className="text-left leading-10">{data?.title}</h2>
-                            <h2 className="card-title">{data?.brand}</h2>
-                            <p>{data.description}</p>
-                            <p className='text-xl text-blue-400'>{data?.category}</p>
-                            <p>{data.meta.createdAt}</p>
-                            <div className="card-actions justify-end">
-                                <button className="btn btn-primary">${data?.price}</button>
-                            </div>
-                        </div>
-                    </div>)
+                    main?.map(data =><Date data={data}></Date>)
                 }
             </div>
            
