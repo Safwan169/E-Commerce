@@ -195,7 +195,7 @@ const Home = () => {
 
 
 
-            <div className={main ? "grid grid-cols-4 gap-3 " : 'hidden'}>
+            <div className={main ? "grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 " : 'hidden'}>
                 {
                     main?.map(data => <div className="card w-[300px] card-compact bg-base-100  shadow-xl">
                         <figure>
