@@ -18,7 +18,7 @@ const Home = () => {
         const data = {
             name: search
         }
-        axios.post('http://localhost:5000/product', data)
+        axios.post('https://e-commerce-server-side-beta.vercel.app/product', data)
             .then(res => setMain(res.data))
     }, [search, loading])
 
@@ -102,7 +102,7 @@ const Home = () => {
 
     }
     useEffect(() => {
-        axios.post(`http://localhost:5000/all?size=${btn}`)
+        axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [btn])

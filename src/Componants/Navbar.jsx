@@ -14,6 +14,7 @@ import Home from "./Home";
 
 
 
+
 const navLinks = [
   { path: '/', name: 'Home' },
   { path: '/about', name: 'About' },
@@ -61,7 +62,7 @@ const Navbar = () => {
 
  
 
-  //   axios.post(`http://localhost:5000/product`, data)
+  //   axios.post(`https://e-commerce-server-side-beta.vercel.app/product`, data)
 
   //     .then(res => Home(res.data))
 
@@ -85,12 +86,12 @@ const Navbar = () => {
             <div className="flex flex-shrink-0 items-center">
               <img
                 alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                src="https://i.ibb.co/D4g9cNP/e-commerece-logo.jpg"
                 className="h-8 lg:block md:block hidden w-auto"
               />
               <img
                 alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                src="https://i.ibb.co/D4g9cNP/e-commerece-logo.jpg"
                 className="h-8 absolute left-[45px] md:hidden lg:hidden block w-auto"
               />
             </div>
