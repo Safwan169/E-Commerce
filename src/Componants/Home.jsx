@@ -125,7 +125,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="flex">
+            <div className="lg:flex " >
 
 
                 <div className='flex justify-end mt-4 mr-3'>
