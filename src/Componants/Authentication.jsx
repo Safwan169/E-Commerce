@@ -53,15 +53,15 @@ useEffect(() => {
     }
     console.log(search)
 
-    axios.post(`http://localhost:5000/product`, data1)
+    axios.post(`http://localhost:5000/products`)
 
-      .then(res =>{setSearchData(res.data) ,console.log(res.data)})
-      console.log(searchData)
+      .then(res =>{setSearchData(res.data) ,console.log(res.data[0].meta)})
+    //   console.log(searchData)
     //   if (searchData) {
         setLoad(true)
     //   }
 
-  }, [search])
+  }, [search,loading])
 
 const data={
     signUp,
@@ -71,7 +71,8 @@ const data={
     setLoading,
     setSearchText,
     searchData,
-    load
+    load,
+    search
     
 }
 
