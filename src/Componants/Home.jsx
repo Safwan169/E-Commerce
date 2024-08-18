@@ -121,12 +121,49 @@ const Home = () => {
         console.log(data, 'sss')
         setMain(data)
     }
-
+const [br,setD]=useState()
+const [category22,setD1]=useState()
     useEffect(() => {
         axios.post(`https://e-commerce-server-side-beta.vercel.app/dd?category=${category}&brand=${brand}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
+            // const d=[...new Set([searchData].br)]
+            // setD(d)
+
+            
+           
+
+
     }, [brand, category])
+
+    useEffect(()=>{
+        const uniqueData = searchData?.reduce((acc, current) => {
+            const x = acc.find(item => item?.brand === current?.brand);
+            if (!x) {
+              return acc.concat([current]);
+            } else {
+              return acc;
+            }
+          }, []);
+          setD(uniqueData)
+
+
+    })
+
+    useEffect(()=>{
+        const uniqueData1 = searchData?.reduce((acc, current) => {
+            const x = acc.find(item => item?.category === current?.category);
+            if (!x) {
+              return acc.concat([current]);
+            } else {
+              return acc;
+            }
+          }, []);
+          setD1(uniqueData1)
+    },)
+    
+console.log(br)
+
 
 
     const [btn, SetBtn] = useState(0)
@@ -187,7 +224,7 @@ const Home = () => {
 
                             <option disabled selected>Brand</option>
                             {
-                                searchData?.map(data =>
+                                br?.map(data =>
                                     <option value={data?.brand} className='' >{
                                         data?.brand ? `${data?.brand}` : ""
                                     }
@@ -208,7 +245,7 @@ const Home = () => {
 
                             <option disabled selected>Category</option>
                             {
-                                searchData?.map(data =>
+                                category22?.map(data =>
                                     <option value={data?.category} className='' >{
                                         data?.category ? `${data?.category}` : ""
                                     }
