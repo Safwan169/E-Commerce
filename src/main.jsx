@@ -10,6 +10,9 @@ import Authentication from "./Componants/Authentication";
 import Login from "./Componants/LOGIN_&_SignUp/Login";
 import Home from "./Componants/Home";
 import Load from "./Load";
+import About from "./About";
+import Contract from "./Componants/Contract";
+import Servises from "./Componants/Servises";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,15 @@ const router = createBrowserRouter([
     },
     {  path:'/',
       element:<Load><Home></Home></Load>
+    },
+    {  path:'/about',
+      element:<About></About>
+    },
+    {  path:'/contact',
+      element:<Contract></Contract>
+    },
+    {  path:'/services',
+      element:<Servises></Servises>
     },
    
     ]
