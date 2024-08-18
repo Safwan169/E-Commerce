@@ -53,7 +53,7 @@ useEffect(() => {
     }
     console.log(search)
 
-    axios.post(`https://safwan-commrerce.netlify.app/products`)
+    axios.post(`https://e-commerce-server-side-qzs0790f3-safwan-hossains-projects.vercel.app/products`)
 
       .then(res =>{setSearchData(res.data) ,console.log(res.data[0].meta)})
     //   console.log(searchData)

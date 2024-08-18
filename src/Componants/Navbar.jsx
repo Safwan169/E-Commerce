@@ -62,7 +62,7 @@ const Navbar = () => {
 
  
 
-  //   axios.post(`https://safwan-commrerce.netlify.app/product`, data)
+  //   axios.post(`https://e-commerce-server-side-qzs0790f3-safwan-hossains-projects.vercel.app/product`, data)
 
   //     .then(res => Home(res.data))
 

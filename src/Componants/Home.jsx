@@ -20,7 +20,7 @@ const Home = () => {
         const data = {
             name: search
         }
-        axios.post('https://safwan-commrerce.netlify.app/product', data)
+        axios.post('https://e-commerce-server-side-qzs0790f3-safwan-hossains-projects.vercel.app/product', data)
             .then(res => setMain(res.data))
     }, [search, loading])
 
@@ -123,7 +123,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        axios.post(`https://safwan-commrerce.netlify.app/dd?category=${category}&brand=${brand}`)
+        axios.post(`https://e-commerce-server-side-qzs0790f3-safwan-hossains-projects.vercel.app/dd?category=${category}&brand=${brand}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [brand, category])
@@ -143,7 +143,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.post(`https://safwan-commrerce.netlify.app/all?size=${btn}`)
+        axios.post(`https://e-commerce-server-side-qzs0790f3-safwan-hossains-projects.vercel.app/all?size=${btn}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [btn])
