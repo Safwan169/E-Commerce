@@ -62,7 +62,7 @@ const Navbar = () => {
 
  
 
-  //   axios.post(`http://localhost:5000/product`, data)
+  //   axios.post(`https://safwan-commrerce.netlify.app/product`, data)
 
   //     .then(res => Home(res.data))
 

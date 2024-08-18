@@ -20,7 +20,7 @@ const Home = () => {
         const data = {
             name: search
         }
-        axios.post('http://localhost:5000/product', data)
+        axios.post('https://safwan-commrerce.netlify.app/product', data)
             .then(res => setMain(res.data))
     }, [search, loading])
 
@@ -53,14 +53,14 @@ const Home = () => {
         useEffect(() => {
             if (text2 == 'high') {
                 const data1 = main?.sort((a, b) => a?.price - b?.price)
-                console.log('data', data1)
+                // console.log('data', data1)
     
                 return setMain(data1)
             }
             else if (text2 == 'low') {
                 const data = main?.sort((a, b) => b?.price - a?.price)
     
-                console.log('data', data)
+                // console.log('data', data)
     
                 return setMain(data)
     
@@ -68,7 +68,7 @@ const Home = () => {
             }
             else if (text2 == 'new') {
                 const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
-                console.log(data)
+                return setMain(data)
             }
         }, [text2])
         
@@ -123,7 +123,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        axios.post(`http://localhost:5000/dd?category=${category}&brand=${brand}`)
+        axios.post(`https://safwan-commrerce.netlify.app/dd?category=${category}&brand=${brand}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [brand, category])
@@ -143,7 +143,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.post(`http://localhost:5000/all?size=${btn}`)
+        axios.post(`https://safwan-commrerce.netlify.app/all?size=${btn}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [btn])

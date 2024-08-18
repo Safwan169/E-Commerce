@@ -53,7 +53,7 @@ useEffect(() => {
     }
     console.log(search)
 
-    axios.post(`http://localhost:5000/products`)
+    axios.post(`https://safwan-commrerce.netlify.app/products`)
 
       .then(res =>{setSearchData(res.data) ,console.log(res.data[0].meta)})
     //   console.log(searchData)
