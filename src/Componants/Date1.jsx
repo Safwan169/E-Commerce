@@ -56,10 +56,10 @@ const pre=Math.floor(price)*100
 
       
     return (
-        <div className="card w-[300px] card-compact bg-base-100  shadow-xl">
+        <div className="card w-[300px] hover:shadow-xl full card-compact bg-base-100 border border-gray-100  ">
                         <figure>
-                            <img className='h-[200px]'
-                                src={images[0]}
+                            <img className='imge h-[200px]'
+                                src={data?.images[0]}
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">

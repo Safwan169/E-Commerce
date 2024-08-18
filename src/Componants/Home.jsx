@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { context } from './Authentication';
 import axios from 'axios';
 import { IoIosArrowForward } from "react-icons/io";
-import Date from './Date';
+import Date1 from './Date1';
+// import Date from './Date';
 
 const Home = () => {
 
@@ -35,34 +36,50 @@ const Home = () => {
     for (let index = 0; index < pagenationBttn; index++) {
         data.push(index)
     }
+    const [text2, setText] = useState()
+    const [text1, setText1] = useState('true')
 
 
     const handleOption = (e) => {
         const text = e.target.value
-        if (text == 'low') {
-            const data1 = main?.sort((a, b) => a.price - b.price)
-            console.log('data', data1)
-
-            return setMain(data1)
-        }
-        else if (text == 'high') {
-            const data = main?.sort((a, b) => b.price - a.price)
-
-
-            return setMain(data)
-
-
-        }
+        setText(text)
+        setText1(!text1)
 
 
 
     }
 
-const[brand,setBrand]=useState()
-const[category,setCategory]=useState()
+   
+        useEffect(() => {
+            if (text2 == 'high') {
+                const data1 = main?.sort((a, b) => a?.price - b?.price)
+                console.log('data', data1)
+    
+                return setMain(data1)
+            }
+            else if (text2 == 'low') {
+                const data = main?.sort((a, b) => b?.price - a?.price)
+    
+                console.log('data', data)
+    
+                return setMain(data)
+    
+    
+            }
+            else if (text2 == 'new') {
+                const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
+                console.log(data)
+            }
+        }, [text2])
+        
+    
+
+
+    const [brand, setBrand] = useState()
+    const [category, setCategory] = useState()
     const handleBrand = (e) => {
         const text = e.target.value
-        console.log(text,'brand')
+        console.log(text, 'brand')
 
         setBrand(text)
 
@@ -87,8 +104,8 @@ const[category,setCategory]=useState()
 
     }
 
-const[max,setMax]=useState()
-const[min,setMin]=useState()
+    const [max, setMax] = useState()
+    const [min, setMin] = useState()
     // for price
     const handlePrice = (e) => {
         e.preventDefault()
@@ -98,17 +115,18 @@ const[min,setMin]=useState()
         // setMin(min)
         // setMax(max)
         setMain(searchData)
-        
 
-        const data = main.filter(data => data?.price > min && data?.price < max)
+
+        const data = main.filter(data => data?.price > min / 100 && data?.price < max / 100)
+        console.log(data, 'sss')
         setMain(data)
     }
 
     useEffect(() => {
         axios.post(`http://localhost:5000/dd?category=${category}&brand=${brand}`)
-        .then(res=>{setMain(res.data),console.log(res.data)})
+            .then(res => { setMain(res.data), console.log(res.data) })
 
-    }, [brand,category])
+    }, [brand, category])
 
 
     const [btn, SetBtn] = useState(0)
@@ -120,25 +138,25 @@ const[min,setMin]=useState()
 
 
     }
+
+
+
+
     useEffect(() => {
         axios.post(`http://localhost:5000/all?size=${btn}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
     }, [btn])
-
-
- 
-
     const handlePre = () => {
-        if (parseInt(btn)!== 0) {
-            SetBtn((btn)-1)
+        if (parseInt(btn) !== 0) {
+            SetBtn((btn) - 1)
 
 
         }
     }
     const handleNxt = () => {
-        if (parseInt(btn)!== pagenationBttn-1) {
-            SetBtn((btn)+1)
+        if (parseInt(btn) !== pagenationBttn - 1) {
+            SetBtn((btn) + 1)
 
 
         }
@@ -158,13 +176,14 @@ const[min,setMin]=useState()
                         <option value={'low'} className='' >Low To High</option>
 
                         <option value={'high'}>High To Low</option>
+                        <option value={'new'}> Newest first</option>
                     </select>
                 </div>
 
                 <div>
-                    <div className='flex justify-end mt-4 mr-3'>
+                    <div className='flex justify-end  mt-4 mr-3'>
 
-                        <select onChange={handleBrand} className="select select-bordered  max-w-xs">
+                        <select onChange={handleBrand} className="select select-bordered h-8 max-w-xs">
 
 
                             <option disabled selected>Brand</option>
@@ -204,11 +223,11 @@ const[min,setMin]=useState()
 
                 </div>
                 <div>
-                    <form onSubmit={handlePrice} className='flex gap-5 justify-end  items-center mt-3 mr-3'>
+                    <form onSubmit={handlePrice} className='flex justify-end  items-center mt-3 gap-2'>
 
-                        <input placeholder='min' className='w-20 h-12 text-xs rounded-xl border border-black border-solid' name='min' type="number" />
-                        <input placeholder='max' className='w-20 h-12 text-xs rounded-xl border border-black border-solid' name='max' type="number" />
-                        <button className='bg-blue-400 text-white font-bold w-10 h-7 justify-center items-center flex'><IoIosArrowForward /></button>
+                        <input placeholder='Min' className='w-20 h-10 text-gray-400 text-xs rounded-lg border border-gray-400 border-solid' name='min' type="number" />-
+                        <input placeholder='Max' className='w-20 h-10 text-gray-400 text-xs rounded-lg border border-gray-400 border-solid' name='max' type="number" />
+                        <button className='bg-orange-400 rounded-lg h-10 text-white font-bold w-10  justify-center items-center flex'><IoIosArrowForward /></button>
                     </form>
 
                 </div>
@@ -217,23 +236,24 @@ const[min,setMin]=useState()
 
 
 
-            <div className={main ? "grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 " : 'hidden'}>
+            <div className={main ? `${main?.length <= 3 ? "mx-auto lg:flex md:flex-wrap md:flex gap-4 mt-5 block ml-[9px] justify-center " : "mx-auto  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-3 justify-center items-center md:pl-12 mt-5 pl-[9px]  lg:pl-5 "} ` : 'hidden'}>
                 {
-                    main?.map(data =><Date data={data}></Date>)
+                    main?.map(data => <Date1 data={data}></Date1>)
                 }
             </div>
-           
 
-                <div className=' flex mx-auto mt-6 border b  gap-1 w-64 '>
+
+
+            <div className=' flex mx-auto mt-6 border b  gap-1 w-64 '>
                 <button onClick={handlePre} className='text-black border border-solid w-20   border-gray-400'>Previous</button>
 
 
-                    {data?.map(data => <button onClick={() => handleBtn(data)} value={data} className={btn == data ? 'text-white bg-blue-500 border w-5 text-center rounded-lg  border-solid border-gray-400' : " border w-5 text-center rounded-lg text-black border-solid border-gray-400"}>{data + 1}</button>)}
-                    <button onClick={handleNxt} className='text-black border border-solid w-20   border-gray-400'>Next</button>
-               
-                </div>
+                {data?.map(data => <button onClick={() => handleBtn(data)} value={data} className={btn == data ? 'text-white bg-blue-500 border w-5 text-center rounded-lg  border-solid border-gray-400' : " border w-5 text-center rounded-lg text-black border-solid border-gray-400"}>{data + 1}</button>)}
+                <button onClick={handleNxt} className='text-black border border-solid w-20   border-gray-400'>Next</button>
 
-       
+            </div>
+
+
 
         </>
     );

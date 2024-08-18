@@ -305,5 +305,14 @@ input {
     transform: translate3d(0, 0, 0);
 }
 
+.full:hover .imge{
+    transform: scale(1.09);
+    transition: transform 0.3s ease;
 
+
+}
+
+.full img{
+    transition: transform 0.9s ease-out;
+}
 
