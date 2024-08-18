@@ -165,11 +165,11 @@ const Home = () => {
 
     return (
         <>
-            <div className="lg:flex " >
+            <div className="lg:flex md:flex md:gap-5 flex gap-5 justify-center flex-wrap md:justify-center border-b-2 pb-5 pt-5 lg:gap-16 border-gray-100  bg-base-200 lg:justify-center " >
 
-
-                <div className='flex justify-end mt-4 mr-3'>
-                    <select onChange={handleOption} className="select select-bordered  max-w-xs">
+                    {/* featured */}
+                <div className=''>
+                    <select onChange={handleOption} className="select select-bordered   md:max-w-xs lg:max-w-xs">
 
 
                         <option disabled selected>Featured</option>
@@ -179,11 +179,10 @@ const Home = () => {
                         <option value={'new'}> Newest first</option>
                     </select>
                 </div>
+                    {/* brand */}
+                    <div className=''>
 
-                <div>
-                    <div className='flex justify-end  mt-4 mr-3'>
-
-                        <select onChange={handleBrand} className="select select-bordered h-8 max-w-xs">
+                        <select onChange={handleBrand} className="select select-bordered h-8 w-36 lg:max-w-xs">
 
 
                             <option disabled selected>Brand</option>
@@ -200,11 +199,11 @@ const Home = () => {
 
                     </div>
 
-                </div>
-                <div>
-                    <div className='flex justify-end mt-4 mr-3'>
+                {/* category */}
+                
+                    <div className=' '>
 
-                        <select onChange={handleCategory} className="select select-bordered  max-w-xs">
+                        <select onChange={handleCategory} className="select select-bordered  w-[125px] md:max-w-xs lg:max-w-xs">
 
 
                             <option disabled selected>Category</option>
@@ -221,13 +220,14 @@ const Home = () => {
 
                     </div>
 
-                </div>
-                <div>
-                    <form onSubmit={handlePrice} className='flex justify-end  items-center mt-3 gap-2'>
+            
+                {/* price */}
+                <div className=''>
+                    <form onSubmit={handlePrice} className='flex  items-center  gap-2'>
 
-                        <input placeholder='Min' className='w-20 h-10 text-gray-400 text-xs rounded-lg border border-gray-400 border-solid' name='min' type="number" />-
-                        <input placeholder='Max' className='w-20 h-10 text-gray-400 text-xs rounded-lg border border-gray-400 border-solid' name='max' type="number" />
-                        <button className='bg-orange-400 rounded-lg h-10 text-white font-bold w-10  justify-center items-center flex'><IoIosArrowForward /></button>
+                        <input placeholder='Min' className='w-12  md:w-20 lg:w-20  h-10 text-gray-400 bg-white  text-xs rounded-lg border border-gray-300 border-solid' name='min' type="number" />-
+                        <input placeholder='Max' className='w-12  md:w-20 lg:w-20 h-10 text-gray-400  bg-white text-xs rounded-lg border border-gray-300 border-solid' name='max' type="number" />
+                        <button className=' bg-orange-400 rounded-lg h-8 mt-1 md:h-10 md:w-10 lg:w-10 lg:h-10 text-white font-bold w-8  justify-center items-center flex'><IoIosArrowForward /></button>
                     </form>
 
                 </div>
