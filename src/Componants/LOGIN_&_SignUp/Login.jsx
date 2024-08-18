@@ -49,13 +49,30 @@ const Login = () => {
 
             })
     }
-
+    const [ok, setOk] = useState()
+    const [okk, setOkk] = useState()
     const handleSubmitSignUp = (e) => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
         const name = e.target.name.value
         const photoURL = e.target.photoURL.value
+
+        setOkk('')
+        setOk('')
+
+        if (password.length < 6) {
+
+            setOkk("Your password must be 6 letters")
+            return
+        }
+        else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
+
+            setOkk("Password must include both uppercase and lowercase letters")
+
+
+            return
+        }
         signUp(email, password)
             .then((userCredential) => {
                 // Signed in 
@@ -79,6 +96,12 @@ const Login = () => {
                     });
                 }
                 navigate('/')
+            })
+            .catch((error) => {
+
+
+                setOk("Email already in use ")
+
             })
     }
 
@@ -143,12 +166,19 @@ const Login = () => {
                                 name='email'
                                 type="email" />
                         </label>
+                        {
+                            ok && <p className=' ml-3 text-center text-red-500'>{ok}</p>
+                        }
                         <label>
                             <span>Password</span>
                             <input
                                 name='password'
                                 type="password" />
                         </label>
+                        {
+                            okk && <p className=' text-center ml-2 text-red-500'>{okk}</p>
+                        }
+
                         <label>
                             <span>Photo URL</span>
                             <input
@@ -188,7 +218,7 @@ const Login = () => {
                             <div className="field btn">
                                 <div className="btn-layer"></div>
                                 <input type="submit" value="Login" />
-                              
+
 
 
                             </div>
@@ -211,9 +241,15 @@ const Login = () => {
                             <div className="field">
                                 <input className='text-left' type="email" placeholder="Email Address" name='email' required />
                             </div>
+                            {
+                                ok && <p className=' ml-3 text-red-500'>{ok}</p>
+                            }
                             <div className="field">
                                 <input className='text-left' type="password" placeholder="Password" name='password' required />
                             </div>
+                            {
+                                okk && <p className=' ml-2 text-red-500'>{okk}</p>
+                            }
                             <div className="field">
                                 <input className='text-left' type="url" name='photoURL' placeholder="Photo URL" required />
                             </div>
