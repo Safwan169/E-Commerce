@@ -70,7 +70,7 @@ console.log(main)
                 const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
                 return setMain(data)
             }
-        }, [text2])
+        }, [!text1])
         
     
 
