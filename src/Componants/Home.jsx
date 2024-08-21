@@ -51,17 +51,14 @@ const Home = () => {
 
    
         useEffect(() => {
-            if (text2 == 'high') {
+            if (text2 == 'low') {
                 const data1 = main?.sort((a, b) => a?.price - b?.price)
                 // console.log('data', data1)
     
                 return setMain(data1)
             }
-            else if (text2 == 'low') {
+            else if (text2 == 'high') {
                 const data = main?.sort((a, b) => b?.price - a?.price)
-    
-                // console.log('data', data)
-    
                 return setMain(data)
     
     
@@ -145,7 +142,7 @@ const [category22,setD1]=useState()
               return acc;
             }
           }, []);
-          setD(uniqueData)
+          setD(uniqueData) 
 
 
     })
@@ -162,7 +159,6 @@ const [category22,setD1]=useState()
           setD1(uniqueData1)
     },)
     
-console.log(br)
 
 
 
