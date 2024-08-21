@@ -56,9 +56,9 @@ const pre=Math.floor(price)*100
 
       
     return (
-        <div className="card w-[300px] hover:shadow-xl full card-compact bg-base-100 border border-gray-100  ">
+        <div className="card md:w-[300px] w-full lg:w-[280px] hover:shadow-xl full card-compact bg-base-100 border border-gray-100  ">
                         <figure>
-                            <img className='imge h-[200px]'
+                            <img className='imge bg-cover h-[200px]'
                                 src={data?.images[0]}
                                 alt="Shoes" />
                         </figure>
@@ -68,8 +68,8 @@ const pre=Math.floor(price)*100
                             <p>{getSlicedText(description)}</p>
                             <p className='text-xl  text-gray-400'>{category}</p>
 
-                            <div className="card-actions justify-end">
-                                <button className="text-orange-400 text-xl font-semibold text-left btn-primary">৳ {pre}</button>
+                            <div className=" flex  justify-start ">
+                                <p className="text-orange-400 text-xl font-semibold text-left btn-primary">৳ {pre}</p>
                             </div>
                             
                             <p className='flex items-center   gap-1 text-gray-400 '><Rating itemStyles={myStyles} readOnly  style={{ maxWidth: 100 }} value={rating}  /><span className='mt-1 font-mono'>({reviews.length})</span></p>

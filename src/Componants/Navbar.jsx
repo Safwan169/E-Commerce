@@ -70,16 +70,16 @@ const Navbar = () => {
 
  
   return (
-    <Disclosure as="nav" className="bg-gray-800 text-white">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
+    <Disclosure as="nav" className="bg-gray-800 z-20  text-white">
+      <div className="mx-auto  max-w-7xl px-2 sm:px-6  lg:px-8">
+        <div className="relative  flex h-16 items-center justify-between">
           <div className="absolute  inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 w-min text-gray-100 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <DisclosureButton className="group relative  inline-flex items-center justify-center rounded-md p-2 w-min text-gray-100 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block h-7 w-6 group-data-[open]:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
+              <Bars3Icon aria-hidden="true" className="block   h-7 w-6 group-data-[open]:hidden" />
+              <XMarkIcon aria-hidden="true" className="hidden  h-6 w-6 group-data-[open]:block" />
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -119,7 +119,7 @@ const Navbar = () => {
               <div className="flex space-x-4">
                 {navLinks.map((link, index) => (
 
-                  <NavLink
+                  <NavLink key={index}
                     to={link.path}
                     className={({ isActive }) =>
                       isActive ? "text-gray-400  hover:border-solid hover:border underline-offset-4 underline hover:border-white border-solid border-transparent border box-border w-full p-3 font-semibold" : "w-full hover:border-solid hover:border-white hover:text-gray-400 hover:border border border-transparent box-border p-3"

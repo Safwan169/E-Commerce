@@ -8,27 +8,30 @@ import Date1 from './Date1';
 const Home = () => {
 
 
-    const { searchData, search, loading, setLoading } = useContext(context)
+    const { searchData, search } = useContext(context)
 
     const [main, setMain] = useState()
 
 
 
-
+// for search data
+console.log(search)
+console.log(main)
 
     useEffect(() => {
-        const data = {
+        let data = {
             name: search
         }
-        axios.post('https://e-commerce-server-side-beta.vercel.app/product', data)
-            .then(res => setMain(res.data))
-    }, [search, loading])
+        // console.log(data.name)
+        axios.post('https://e-commerce-server-side-beta.vercel.app/product', {search})
+            .then(res => setMain(res?.data))
+    }, [search])
+
+
 
 
     let lol = searchData?.length
-    console.log(lol)
     let pagenationBttn = Math.ceil(parseInt(lol) / 8)
-    console.log(pagenationBttn)
 
 
     const data = []
@@ -101,8 +104,7 @@ const Home = () => {
 
     }
 
-    const [max, setMax] = useState()
-    const [min, setMin] = useState()
+   
     // for price
     const handlePrice = (e) => {
         e.preventDefault()
@@ -133,31 +135,46 @@ const [category22,setD1]=useState()
 
     }, [brand, category])
 
+
+
+// brand
     useEffect(()=>{
+   
+
         const uniqueData = searchData?.reduce((acc, current) => {
-            const x = acc.find(item => item?.brand === current?.brand);
+            const x = acc?.find(item => item?.brand === current?.brand);
+           
             if (!x) {
-              return acc.concat([current]);
+              return (acc?.concat([current]))
             } else {
-              return acc;
+
+              return( acc 
+              
+              )
             }
+
           }, []);
-          setD(uniqueData) 
+          setD(uniqueData)
+        
+      
+
+    },[searchData])
 
 
-    })
-
+    // category
     useEffect(()=>{
         const uniqueData1 = searchData?.reduce((acc, current) => {
             const x = acc.find(item => item?.category === current?.category);
             if (!x) {
+
               return acc.concat([current]);
             } else {
+                console.log(x,'x',acc)
               return acc;
             }
           }, []);
           setD1(uniqueData1)
-    },)
+    },[searchData])
     
 
 
@@ -177,7 +194,7 @@ const [category22,setD1]=useState()
 
     useEffect(() => {
         axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}`)
-            .then(res => { setMain(res.data), console.log(res.data) })
+            .then(res => { setMain(res.data) })
 
     }, [btn])
     const handlePre = () => {
@@ -198,7 +215,7 @@ const [category22,setD1]=useState()
 
     return (
         <>
-            <div className="lg:flex md:flex md:gap-5 flex gap-5 justify-center flex-wrap md:justify-center border-b-2 pb-5 pt-5 lg:gap-16 border-gray-100  bg-base-200 lg:justify-center " >
+            <div className="lg:flex md:flex md:gap-5  z-10 flex gap-5 justify-center flex-wrap md:justify-center border-b-2 pb-5 pt-5 lg:gap-16 border-gray-100  bg-base-200 lg:justify-center " >
 
                     {/* featured */}
                 <div className=''>

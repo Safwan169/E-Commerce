@@ -48,18 +48,15 @@ const [load,setLoad]=useState(false)
 
 useEffect(() => {
    
-    const data1={
-        name:search
-    }
+   
     console.log(search)
 
     axios.post(`https://e-commerce-server-side-beta.vercel.app/products`)
 
-      .then(res =>{setSearchData(res.data) ,console.log(res.data[0].meta)})
-    //   console.log(searchData)
-    //   if (searchData) {
+      .then(res =>{setSearchData(res.data) })
+    
         setLoad(true)
-    //   }
+  
 
   }, [search,loading])
 
