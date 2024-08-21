@@ -54,13 +54,13 @@ console.log(main)
 
    
         useEffect(() => {
-            if (text2 == 'low') {
+            if (text2 == 'high') {
                 const data1 = main?.sort((a, b) => a?.price - b?.price)
                 // console.log('data', data1)
     
                 return setMain(data1)
             }
-            else if (text2 == 'high') {
+            else if (text2 == 'low') {
                 const data = main?.sort((a, b) => b?.price - a?.price)
                 return setMain(data)
     
