@@ -40,7 +40,7 @@ console.log(main)
         data.push(index)
     }
     const [text2, setText] = useState()
-    const [text1, setText1] = useState('true')
+    const [text1, setText1] = useState(true)
 
 
     const handleOption = (e) => {
