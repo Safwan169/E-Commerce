@@ -10,4 +10,4 @@ Currently, two official plugins are available:
 
 
 
-server: http://localhost:5000
+server: https://e-commerce-server-side-beta.vercel.app

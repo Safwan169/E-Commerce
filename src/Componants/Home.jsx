@@ -14,14 +14,14 @@ const Home = () => {
 
 
 
-// for search data
-console.log(search)
-console.log(main)
+    // for search data
+    
+   
 
     useEffect(() => {
-       
+
         // console.log(data.name)
-        axios.post('https://e-commerce-server-side-beta.vercel.app/product', {search})
+        axios.post('https://e-commerce-server-side-beta.vercel.app/product', { search })
             .then(res => setMain(res?.data))
     }, [search])
 
@@ -37,57 +37,68 @@ console.log(main)
     for (let index = 0; index < pagenationBttn; index++) {
         data.push(index)
     }
-    const [text2, setText] = useState()
-    const [text1, setText1] = useState('true')
 
-
+// for featured data stored 
+const [dataa,setData]=useState()
+const [dataa1,setData1]=useState(0)
     const handleOption = (e) => {
+        // e.preventDefault()
         const text = e.target.value
-        setText(text)
-        setText1(!text1)
+        // setText(text)
+        // setText1(!text1)
+        setData(text)
+
+       
+
+        
+        setData1 (dataa1+1)
+     
 
 
 
     }
 
-   
-        useEffect(() => {
-            if (text2 == 'high') {
-
-                console.log('high')
-                const data1 = main.sort((a, b) => a?.price - b?.price)
-                // console.log('data', data1)
-    
-                return setMain(data1)
-            }
-            else if (text2 == 'low') {
-
-                console.log('low')
-
-                const data = main.sort((a, b) => b?.price - a?.price)
-                console.log(data,'data')
-                return setMain(data)
-    
-    
-            }
-            else if (text2 == 'new') {
-                const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
-                return setMain(data)
-            }
-        },[text1])
-        
-    
+    // useEffect(()=>{
 
 
+    //     if (dataa == 'high') {
+
+    //         const data1 = main?.sort((a, b) => a.price - b.price)
+    //         setMain(data1)
+    //         setMain(data1)
+    //     }
+    //     else if (dataa == 'low') {
+
+
+    //         const data = main?.sort((a, b) => b.price - a.price)
+    //         setMain(data)
+    //         setMain(data)
+
+
+    //     }
+    //     else if (dataa == 'new') {
+    //         const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
+    //         setMain(data)
+    //     }
+    // },[dataa,dataa1])
+
+
+
+
+
+
+// store brand and category 
     const [brand, setBrand] = useState()
     const [category, setCategory] = useState()
     const handleBrand = (e) => {
+
+        e.preventDefault()
         const text = e.target.value
         console.log(text, 'brand')
 
         setBrand(text)
 
-  
+
 
 
     }
@@ -99,13 +110,13 @@ console.log(main)
         console.log(text)
         setCategory(text)
 
-        
+
 
 
 
     }
 
-   
+
     // for price
     const handlePrice = (e) => {
         e.preventDefault()
@@ -124,70 +135,72 @@ console.log(main)
 
 
 
-const [br,setD]=useState()
-const [category22,setD1]=useState()
+    const [br, setD] = useState()
+    const [category22, setD1] = useState()
 
 
 
-// fetch for brand and category 
+    // fetch for brand and category 
     useEffect(() => {
-        axios.post(`https://e-commerce-server-side-beta.vercel.app/dd?category=${category}&brand=${brand}`)
-            .then(res => { setMain(res.data), console.log(res.data) })
+        if (category !== 'undefined' || brand !== 'undefined') {
+            axios.post(`https://e-commerce-server-side-beta.vercel.app/dd?category=${category}&brand=${brand}`)
+                .then(res => { setMain(res.data), console.log(res.data) })
+        }
 
 
-            
-           
+
+
 
 
     }, [brand, category])
 
 
 
-// brand
-    useEffect(()=>{
+    // brand
+    useEffect(() => {
 
 
         const uniqueData = searchData?.reduce((acc, current) => {
             const x = acc?.find(item => item?.brand === current?.brand);
-           
+
             if (!x) {
-              return (acc?.concat([current]))
+                return (acc?.concat([current]))
             } else {
 
-              return( acc 
-              
-              )
+                return (acc
+
+                )
             }
 
-          }, []);
-          setD(uniqueData)
-        
-      
+        }, []);
+        setD(uniqueData)
 
-    },[searchData])
+
+
+    }, [searchData])
 
 
     // category
-    useEffect(()=>{
+    useEffect(() => {
         const uniqueData1 = searchData?.reduce((acc, current) => {
             const x = acc.find(item => item?.category === current?.category);
             if (!x) {
 
-              return acc.concat([current]);
+                return acc.concat([current]);
             } else {
-                console.log(x,'x',acc)
-              return acc;
+                console.log(x, 'x', acc)
+                return acc;
             }
-          }, []);
-          setD1(uniqueData1)
-    },[searchData])
-    
+        }, []);
+        setD1(uniqueData1)
+    }, [searchData])
+
 
 
 
     const [btn, SetBtn] = useState(0)
 
-
+// for button 
     const handleBtn = (data) => {
         SetBtn(data)
 
@@ -197,12 +210,12 @@ const [category22,setD1]=useState()
 
 
 
-//  fetch data for per button 
+    //  fetch data for per button  and all data 
     useEffect(() => {
-        axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}`)
+        axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}&&price=${dataa}`)
             .then(res => { setMain(res.data) })
 
-    }, [btn])
+    }, [btn,dataa1])
 
     // btn function for previous and next 
     const handlePre = () => {
@@ -220,12 +233,15 @@ const [category22,setD1]=useState()
         }
     }
 
+   
+
+   
 
     return (
         <>
             <div className="lg:flex md:flex md:gap-5  z-10 flex gap-5 justify-center flex-wrap md:justify-center border-b-2 pb-5 pt-5 lg:gap-16 border-gray-100  bg-base-200 lg:justify-center " >
 
-                    {/* featured */}
+                {/* featured */}
                 <div className=''>
                     <select onChange={handleOption} className="select select-bordered   md:max-w-xs lg:max-w-xs">
 
@@ -237,48 +253,48 @@ const [category22,setD1]=useState()
                         <option value={'new'}> Newest first</option>
                     </select>
                 </div>
-                    {/* brand */}
-                    <div className=''>
+                {/* brand */}
+                <div className=''>
 
-                        <select onChange={handleBrand} className="select select-bordered h-8 w-36 lg:max-w-xs">
+                    <select onChange={handleBrand} className="select select-bordered h-8 w-36 lg:max-w-xs">
 
 
-                            <option disabled selected>Brand</option>
-                            {
-                                br?.map(data =>
-                                    <option value={data?.brand} className='' >{
-                                        data?.brand ? `${data?.brand}` : ""
-                                    }
-                                    </option>
+                        <option disabled selected>Brand</option>
+                        {
+                            br?.map(data =>
+                                <option value={data?.brand} className='' >{
+                                    data?.brand ? `${data?.brand}` : ""
+                                }
+                                </option>
 
-                                )
-                            }
-                        </select>
+                            )
+                        }
+                    </select>
 
-                    </div>
+                </div>
 
                 {/* category */}
-                
-                    <div className=' '>
 
-                        <select onChange={handleCategory} className="select select-bordered  w-[125px] md:max-w-xs lg:max-w-xs">
+                <div className=' '>
+
+                    <select onChange={handleCategory} className="select select-bordered  w-[125px] md:max-w-xs lg:max-w-xs">
 
 
-                            <option disabled selected>Category</option>
-                            {
-                                category22?.map(data =>
-                                    <option value={data?.category} className='' >{
-                                        data?.category ? `${data?.category}` : ""
-                                    }
-                                    </option>
+                        <option disabled selected>Category</option>
+                        {
+                            category22?.map(data =>
+                                <option value={data?.category} className='' >{
+                                    data?.category ? `${data?.category}` : ""
+                                }
+                                </option>
 
-                                )
-                            }
-                        </select>
+                            )
+                        }
+                    </select>
 
-                    </div>
+                </div>
 
-            
+
                 {/* price */}
                 <div className=''>
                     <form onSubmit={handlePrice} className='flex  items-center  gap-2'>
@@ -294,7 +310,7 @@ const [category22,setD1]=useState()
 
 
 
-            <div className={main ? `${main?.length <= 3 ? "mx-auto lg:flex md:flex-wrap md:flex gap-8 mt-5 block  justify-center " : "mx-auto md:px-4 lg:px-8 px-2 w-full   grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-8  mt-5    "} ` : 'hidden'}>
+            <div className={main ? `${main?.length <= 3 ? "mx-auto w-fit lg:grid-cols-2 lg:flex md:flex-wrap md:flex gap-8 mt-5 block  justify-center " : "mx-auto md:px-4 lg:px-8 px-2 w-full   grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-8  mt-5    "} ` : 'hidden'}>
                 {
                     main?.map(data => <Date1 data={data}></Date1>)
                 }

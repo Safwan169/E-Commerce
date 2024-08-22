@@ -15,7 +15,7 @@ const [ti,setTi]=useState()
     // const [pre,setPre]=useState()
     // setPre(  price.toString().split(' . '))
 
-const pre=Math.floor(price)*100
+const pre=Math.ceil(price)*100
     useEffect(()=>{
 
 
