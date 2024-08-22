@@ -209,7 +209,7 @@ const [dataa1,setData1]=useState(0)
     }
 
 
-
+console.log(main)
     //  fetch data for per button  and all data 
     useEffect(() => {
         axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}&&price=${dataa}`)
