@@ -19,9 +19,7 @@ console.log(search)
 console.log(main)
 
     useEffect(() => {
-        let data = {
-            name: search
-        }
+       
         // console.log(data.name)
         axios.post('https://e-commerce-server-side-beta.vercel.app/product', {search})
             .then(res => setMain(res?.data))
@@ -30,8 +28,8 @@ console.log(main)
 
 
 
-    let lol = searchData?.length
-    let pagenationBttn = Math.ceil(parseInt(lol) / 8)
+    let count = searchData?.length
+    let pagenationBttn = Math.ceil(parseInt(count) / 8)
 
 
     const data = []
@@ -40,7 +38,7 @@ console.log(main)
         data.push(index)
     }
     const [text2, setText] = useState()
-    const [text1, setText1] = useState(true)
+    const [text1, setText1] = useState('true')
 
 
     const handleOption = (e) => {
@@ -55,13 +53,19 @@ console.log(main)
    
         useEffect(() => {
             if (text2 == 'high') {
-                const data1 = main?.sort((a, b) => a?.price - b?.price)
+
+                console.log('high')
+                const data1 = main.sort((a, b) => a?.price - b?.price)
                 // console.log('data', data1)
     
                 return setMain(data1)
             }
             else if (text2 == 'low') {
-                const data = main?.sort((a, b) => b?.price - a?.price)
+
+                console.log('low')
+
+                const data = main.sort((a, b) => b?.price - a?.price)
+                console.log(data,'data')
                 return setMain(data)
     
     
@@ -70,7 +74,7 @@ console.log(main)
                 const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
                 return setMain(data)
             }
-        }, [text2])
+        },[text1])
         
     
 
@@ -83,22 +87,19 @@ console.log(main)
 
         setBrand(text)
 
-        // const data = searchData?.filter(data => data.brand == text)
-
-        // setMain(searchData)
-        // setMain(data)
-
-
+  
 
 
     }
+
+
+    // for category text 
     const handleCategory = (e) => {
         const text = e.target.value
         console.log(text)
         setCategory(text)
 
-        // const data = main?.filter(data => data.category == text)
-        // setMain(data)
+        
 
 
 
@@ -120,14 +121,19 @@ console.log(main)
         console.log(data, 'sss')
         setMain(data)
     }
+
+
+
 const [br,setD]=useState()
 const [category22,setD1]=useState()
+
+
+
+// fetch for brand and category 
     useEffect(() => {
         axios.post(`https://e-commerce-server-side-beta.vercel.app/dd?category=${category}&brand=${brand}`)
             .then(res => { setMain(res.data), console.log(res.data) })
 
-            // const d=[...new Set([searchData].br)]
-            // setD(d)
 
             
            
@@ -139,7 +145,7 @@ const [category22,setD1]=useState()
 
 // brand
     useEffect(()=>{
-   
+
 
         const uniqueData = searchData?.reduce((acc, current) => {
             const x = acc?.find(item => item?.brand === current?.brand);
@@ -191,12 +197,14 @@ const [category22,setD1]=useState()
 
 
 
-
+//  fetch data for per button 
     useEffect(() => {
         axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}`)
             .then(res => { setMain(res.data) })
 
     }, [btn])
+
+    // btn function for previous and next 
     const handlePre = () => {
         if (parseInt(btn) !== 0) {
             SetBtn((btn) - 1)
