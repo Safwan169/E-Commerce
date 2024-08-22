@@ -70,7 +70,7 @@ console.log(main)
                 const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
                 return setMain(data)
             }
-        }, [!text1])
+        }, [text2])
         
     
 
@@ -286,7 +286,7 @@ const [category22,setD1]=useState()
 
 
 
-            <div className={main ? `${main?.length <= 3 ? "mx-auto lg:flex md:flex-wrap md:flex gap-4 mt-5 block ml-[9px] justify-center " : "mx-auto  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-3 justify-center items-center md:pl-12 mt-5 pl-[9px]  lg:pl-5 "} ` : 'hidden'}>
+            <div className={main ? `${main?.length <= 3 ? "mx-auto lg:flex md:flex-wrap md:flex gap-8 mt-5 block  justify-center " : "mx-auto md:px-4 lg:px-8 px-2 w-full   grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-8  mt-5    "} ` : 'hidden'}>
                 {
                     main?.map(data => <Date1 data={data}></Date1>)
                 }
