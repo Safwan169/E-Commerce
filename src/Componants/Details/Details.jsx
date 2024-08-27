@@ -8,7 +8,7 @@ const Details = () => {
 
     return (
    
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="w-full mx-auto p-4">
       {/* Image and Title Section */}
       <div className="flex flex-col md:flex-row">
         {/* Product Image */}
