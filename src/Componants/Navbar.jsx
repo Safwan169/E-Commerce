@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useContext, useEffect, useState } from "react";
+// import { useContext, useEffect, useState } from "react";
 import { context } from "./Authentication";
 import { CgProfile } from "react-icons/cg";
 import { getAuth, signOut } from "firebase/auth";
@@ -10,6 +10,7 @@ import { BsCart4 } from "react-icons/bs";
 // import Home from "./Home";
 import axios from 'axios';
 import Home from "./Home";
+import { useContext } from "react";
 
 
 

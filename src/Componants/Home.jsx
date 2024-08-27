@@ -3,7 +3,6 @@ import { context } from './Authentication';
 import axios from 'axios';
 import { IoIosArrowForward } from "react-icons/io";
 import Date1 from './Date1';
-// import Date from './Date';
 
 const Home = () => {
 
@@ -12,19 +11,13 @@ const Home = () => {
 
     const [main, setMain] = useState()
 
-
-
     // for search data
-    
-   
-
     useEffect(() => {
 
         // console.log(data.name)
         axios.post('https://e-commerce-server-side-beta.vercel.app/product', { search })
             .then(res => setMain(res?.data))
     }, [search])
-
 
 
 
@@ -58,33 +51,6 @@ const [dataa1,setData1]=useState(0)
 
     }
 
-    // useEffect(()=>{
-
-
-    //     if (dataa == 'high') {
-
-    //         const data1 = main?.sort((a, b) => a.price - b.price)
-    //         setMain(data1)
-    //         setMain(data1)
-    //     }
-    //     else if (dataa == 'low') {
-
-
-    //         const data = main?.sort((a, b) => b.price - a.price)
-    //         setMain(data)
-    //         setMain(data)
-
-
-    //     }
-    //     else if (dataa == 'new') {
-    //         const data = main?.sort((a, b) => (new Date(a?.meta.createdAt)) - (new Date(b?.meta.createdAt)))
-    //         setMain(data)
-    //     }
-    // },[dataa,dataa1])
-
-
-
-
 
 
 // store brand and category 
@@ -115,6 +81,8 @@ const [dataa1,setData1]=useState(0)
 
 
     }
+
+    console.log(main)
 
 
     // for price
@@ -209,7 +177,6 @@ const [dataa1,setData1]=useState(0)
     }
 
 
-console.log(main)
     //  fetch data for per button  and all data 
     useEffect(() => {
         axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}&&price=${dataa}`)
