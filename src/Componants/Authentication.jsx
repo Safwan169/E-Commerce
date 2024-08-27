@@ -51,7 +51,7 @@ useEffect(() => {
    
     console.log(search)
 
-    axios.post(`http://localhost:5000/products`)
+    axios.post(`https://e-commerce-server-side-beta.vercel.app/products`)
 
       .then(res =>{setSearchData(res.data) })
     

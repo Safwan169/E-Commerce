@@ -15,7 +15,7 @@ const Home = () => {
     useEffect(() => {
 
         // console.log(data.name)
-        axios.post('http://localhost:5000/product', { search })
+        axios.post('https://e-commerce-server-side-beta.vercel.app/product', { search })
             .then(res => setMain(res?.data))
     }, [search])
 
@@ -111,7 +111,7 @@ const Home = () => {
     // fetch for brand and category 
     useEffect(() => {
         if (category !== 'undefined' || brand !== 'undefined') {
-            axios.post(`http://localhost:5000/dd?category=${category}&brand=${brand}`)
+            axios.post(`https://e-commerce-server-side-beta.vercel.app/dd?category=${category}&brand=${brand}`)
                 .then(res => { setMain(res.data), console.log(res.data) })
         }
 
@@ -179,7 +179,7 @@ const Home = () => {
 
     //  fetch data for per button  and all data 
     useEffect(() => {
-        axios.post(`http://localhost:5000/all?size=${btn}&&price=${dataa}`)
+        axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}&&price=${dataa}`)
             .then(res => { setMain(res.data) })
 
     }, [btn, dataa1])

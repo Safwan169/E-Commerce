@@ -63,7 +63,7 @@ const Navbar = () => {
 
  
 
-  //   axios.post(`http://localhost:5000/product`, data)
+  //   axios.post(`https://e-commerce-server-side-beta.vercel.app/product`, data)
 
   //     .then(res => Home(res.data))
 

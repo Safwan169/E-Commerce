@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       element:<Servises></Servises>
     },
     {  path:'/details/:id',
-      loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`),
+      loader:({params})=>fetch(`https://e-commerce-server-side-beta.vercel.app/details/${params.id}`),
       element:<Details></Details>
     },
    
