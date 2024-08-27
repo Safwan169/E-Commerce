@@ -1,12 +1,13 @@
 import { spread } from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useNavigation } from 'react';
 import { Rating, ThinStar } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
+import { useNavigate } from 'react-router-dom';
 
 const Date1 = ({ data }) => {
     // console.log(data)
-    const { brand, category, meta, title, price, rating, reviews, description, images } = data
+    const { brand, category, meta, title, price, rating, reviews, description, images, _id, id } = data
     // console.log(rating)
     // console.log(data1)
     const [ti, setTi] = useState()
@@ -54,24 +55,33 @@ const Date1 = ({ data }) => {
         inactiveFillColor: '#fbf1a9'
     }
 
+    const navigate = useNavigate()
+
+    // for details 
+    const handleSubmit = id => {
+
+
+        navigate(`/details/${id}`)
+
+    }
 
     return (
-        <div className="card w-full   border-solid hover:shadow-xl full card-compact bg-base-100 border border-gray-100  ">
-            <figure>
+        <div onClick={()=>handleSubmit(_id)} className="card w-full  group border-solid hover:shadow-md full card-compact bg-base-100 border border-gray-100  ">
+            <figure className='group-hover:opacity-75'>
                 {/* <img className='imge bg-cover h-[200px]'
                                 src={data?.images[0]}
                                 alt="Shoes" /> */}
-                <img className='imge bg-cover h-[200px]' 
+                <img className='imge bg-cover object-cover object-center  h-[200px]' 
                 src={data?.images[0]}
                     srcset={`${data.images[0]} 1x,`}
                     alt={data.images[1]}
                     loading="lazy"></img>
 
             </figure>
-            <div className="card-body">
+            <div className="card-body gap-0">
                 <h2 className="text-left  text-xl items-end flex leading-10">{ti}</h2>
                 <h2 className=" card-title">{brand || 'No Brand'}</h2>
-                <p>{getSlicedText(description)}</p>
+                {/* <p>{getSlicedText(description)}</p> */}
                 <p className='text-xl  text-gray-400'>{category}</p>
 
                 <div className=" flex  justify-start ">
@@ -84,6 +94,9 @@ const Date1 = ({ data }) => {
 
             </div>
         </div>
+
+
+       
     );
 };
 

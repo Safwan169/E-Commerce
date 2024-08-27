@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { context } from './Authentication';
 import axios from 'axios';
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowRoundForward } from "react-icons/io";
 import Date1 from './Date1';
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     useEffect(() => {
 
         // console.log(data.name)
-        axios.post('https://e-commerce-server-side-beta.vercel.app/product', { search })
+        axios.post('http://localhost:5000/product', { search })
             .then(res => setMain(res?.data))
     }, [search])
 
@@ -31,9 +31,9 @@ const Home = () => {
         data.push(index)
     }
 
-// for featured data stored 
-const [dataa,setData]=useState()
-const [dataa1,setData1]=useState(0)
+    // for featured data stored 
+    const [dataa, setData] = useState()
+    const [dataa1, setData1] = useState(0)
     const handleOption = (e) => {
         // e.preventDefault()
         const text = e.target.value
@@ -41,11 +41,11 @@ const [dataa1,setData1]=useState(0)
         // setText1(!text1)
         setData(text)
 
-       
 
-        
-        setData1 (dataa1+1)
-     
+
+
+        setData1(dataa1 + 1)
+
 
 
 
@@ -53,7 +53,7 @@ const [dataa1,setData1]=useState(0)
 
 
 
-// store brand and category 
+    // store brand and category 
     const [brand, setBrand] = useState()
     const [category, setCategory] = useState()
     const handleBrand = (e) => {
@@ -111,7 +111,7 @@ const [dataa1,setData1]=useState(0)
     // fetch for brand and category 
     useEffect(() => {
         if (category !== 'undefined' || brand !== 'undefined') {
-            axios.post(`https://e-commerce-server-side-beta.vercel.app/dd?category=${category}&brand=${brand}`)
+            axios.post(`http://localhost:5000/dd?category=${category}&brand=${brand}`)
                 .then(res => { setMain(res.data), console.log(res.data) })
         }
 
@@ -168,7 +168,7 @@ const [dataa1,setData1]=useState(0)
 
     const [btn, SetBtn] = useState(0)
 
-// for button 
+    // for button 
     const handleBtn = (data) => {
         SetBtn(data)
 
@@ -179,10 +179,10 @@ const [dataa1,setData1]=useState(0)
 
     //  fetch data for per button  and all data 
     useEffect(() => {
-        axios.post(`https://e-commerce-server-side-beta.vercel.app/all?size=${btn}&&price=${dataa}`)
+        axios.post(`http://localhost:5000/all?size=${btn}&&price=${dataa}`)
             .then(res => { setMain(res.data) })
 
-    }, [btn,dataa1])
+    }, [btn, dataa1])
 
     // btn function for previous and next 
     const handlePre = () => {
@@ -200,9 +200,9 @@ const [dataa1,setData1]=useState(0)
         }
     }
 
-   
 
-   
+
+
 
     return (
         <>
@@ -277,12 +277,19 @@ const [dataa1,setData1]=useState(0)
 
 
 
-            <div className={main ? `${main?.length <= 3 ? "mx-auto w-fit lg:grid-cols-2 lg:flex md:flex-wrap md:flex gap-8 mt-5 block  justify-center " : "mx-auto md:px-4 lg:px-8 px-2 w-full   grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-8  mt-5    "} ` : 'hidden'}>
-                {
-                    main?.map(data => <Date1 data={data}></Date1>)
-                }
-            </div>
+            {/* <div className={main ? `${main?.length <= 3 ? "mx-auto w-fit lg:grid-cols-2 lg:flex md:flex-wrap md:flex gap-8 mt-5 block  justify-center " : "mx-auto md:px-4 lg:px-8 px-2 w-full   grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-8  mt-5    "} ` : 'hidden'}> */}
 
+            <div className="bg-gray-100">
+                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                    <h2 className="text-2xl flex items-center gap-2 font-bold tracking-tight text-left text-gray-900">Customers also purchased <IoIosArrowRoundForward size={30} /></h2>
+
+                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                        {
+                            main?.map(data => <Date1 data={data}></Date1>)
+                        }
+                    </div>
+                </div>
+            </div>
 
 
             <div className=' flex mx-auto mt-6 border b  gap-1 w-64 '>

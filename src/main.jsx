@@ -13,6 +13,7 @@ import Load from "./Load";
 import About from "./About";
 import Contract from "./Componants/Contract";
 import Servises from "./Componants/Servises";
+import Details from "./Componants/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     },
     {  path:'/services',
       element:<Servises></Servises>
+    },
+    {  path:'/details/:id',
+      loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`),
+      element:<Details></Details>
     },
    
     ]
