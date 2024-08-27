@@ -73,7 +73,7 @@ const Date1 = ({ data }) => {
                                 alt="Shoes" /> */}
                 <img className='imge bg-cover object-cover object-center  h-[200px]' 
                 src={data?.images[0]}
-                    srcset={`${data.images[0]} 1x,`}
+                    srcset={`${data.images[0]} 0.1x,`}
                     alt={data.images[1]}
                     loading="lazy"></img>
 
