@@ -1,10 +1,20 @@
-import React from 'react';
-import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLoaderData, useParams, useRouteLoaderData } from 'react-router-dom';
 
 const Details = () => {
 
-    const data1=useLoaderData()
-    console.log(data1,'details data ')
+    // const data1=useLoaderData()
+    // console.log(data1,'details data ')
+
+    const [data1,setData]=useState()
+    const idData=useParams().id
+    useEffect(()=>{
+      axios.get(`https://e-commerce-server-side-beta.vercel.app/details/${idData}`)
+      .then(res=>setData(res.data))
+
+},[])
+    
 
     return (
    
@@ -14,7 +24,7 @@ const Details = () => {
         {/* Product Image */}
         <div className="w-full md:w-1/2 p-4">
           <img
-            src={data1.images[0]}
+            src={data1?.images[0]}
             alt="Digital Pointer Steel Band Quartz Watch"
             className="w-full h-auto rounded-lg"
           />
