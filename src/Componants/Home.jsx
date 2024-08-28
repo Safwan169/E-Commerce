@@ -132,7 +132,20 @@ const Home = () => {
             const x = acc?.find(item => item?.brand === current?.brand);
 
             if (!x) {
-                return (acc?.concat([current]))
+
+                if (current?.brand == undefined) {
+
+                    return (acc)
+
+
+
+                }
+
+                else {
+                    return (acc?.concat([current]))
+                }
+
+
             } else {
 
                 return (acc

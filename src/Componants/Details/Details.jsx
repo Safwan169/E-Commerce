@@ -4,9 +4,7 @@ import { useLoaderData, useParams, useRouteLoaderData } from 'react-router-dom';
 
 const Details = () => {
 
-    // const data1=useLoaderData()
-    // console.log(data1,'details data ')
-
+    
     const [data1,setData]=useState()
     const idData=useParams().id
     useEffect(()=>{
@@ -15,7 +13,6 @@ const Details = () => {
 
 },[])
 
-console.log(data1,'data given ')
     
 
     return (
