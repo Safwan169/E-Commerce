@@ -14,6 +14,8 @@ const Details = () => {
       .then(res=>setData(res.data))
 
 },[])
+
+console.log(data1,'data given ')
     
 
     return (
