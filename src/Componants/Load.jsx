@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { context } from './Componants/Authentication';
+import { context } from './Authentication';
 
 const Load = ({children}) => {
     const {load}=useContext(context)

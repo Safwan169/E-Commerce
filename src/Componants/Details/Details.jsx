@@ -1,6 +1,10 @@
+import { Rating, ThinStar } from '@smastrom/react-rating'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import '@smastrom/react-rating/style.css'
+import Loading from '../Loading/Loading';
+
 
 const Details = () => {
 
@@ -22,6 +26,41 @@ const Details = () => {
     setPicture(data)
   }
 
+
+
+  // rating style 
+  const myStyles = {
+    itemShapes: ThinStar,
+    activeFillColor: '#ffb700',
+    inactiveFillColor: '#fbf1a9'
+  }
+
+
+  // for quantity
+
+  const [quantity, setQuantity] = useState(1)
+
+
+  const handleIncrease = () => {
+
+
+    if (15 !== quantity) {
+
+      setQuantity(quantity + 1)
+
+
+    }
+  }
+
+  const handleDecrease = () => {
+
+
+
+    if (quantity !== 1)
+
+      setQuantity(quantity - 1)
+
+  }
 
 
   return (
@@ -92,10 +131,9 @@ const Details = () => {
         <div className='w-full '>
 
           {/* main image */}
-          <img className='lg:w-3/4 md:w-3/4  rounded-lg border border-gray-200'
-            src={picture ? picture : data1?.images[0]}
-            srcset={`${picture ? picture : data1?.images[0]} 0.1x,`}
-            alt={data1?.images[1]}
+          <img className='lg:w-3/4 md:w-3/4 lg:h-3/4 bg-cover rounded-lg border border-gray-200'
+            src={picture ? picture : data1?.thumbnail}
+            srcset={`${picture ? picture : data1?.thumbnail} 0.1x,`}
             loading="lazy" />
 
           {/* Additional  image */}
@@ -114,51 +152,64 @@ const Details = () => {
         </div>
 
         {/* for title or some details  */}
-        
+
 
         <div className="w-full   md:w-1/2 p-4">
-            <h1 className="text-2xl font-bold mb-4">{data1?.title}</h1>
-            <p className="text-gray-500 mb-2">Brand: {data1?.brand || 'No Brand'} | More Watches from {data1?.brand}</p>
+          <h1 className="text-2xl font-bold mb-4">{data1?.title}</h1>
 
-            <div className="flex items-center mb-4">
-              <span className="text-yellow-500 font-bold text-lg">৳450</span>
-              <span className="line-through text-gray-500 ml-4">৳900</span>
-              <span className="text-green-500 ml-4">-50%</span>
+          <p className='flex items-center   gap-1 text-gray-400 '><Rating itemStyles={myStyles} readOnly style={{ maxWidth: 100 }} value={data1?.rating} /><span className='mt-1 font-light text-blue-500'>{data1?.reviews.length} Ratings</span></p>
+
+          <p className="text-gray-500 mb-2">Brand: {data1?.brand || 'No Brand'} | More {data1?.category} from {data1?.brand}</p>
+
+          <p className='text-black md:my-4 lg:my-4 font-extralight'>{data1?.description}</p>
+
+          <div className="flex items-center mb-4">
+            <span className="text-yellow-500 font-bold text-lg ">৳ {data1?.price * 100}</span>
+            {/* <span className="line-through text-gray-500 ml-4">৳900</span> */}
+            {/* <span className="text-green-500 ml-4">-50%</span> */}
+          </div>
+          {/* Quantity and Buy/Add to Cart */}
+          <div className=" items-center mb-4">
+
+            <p className='my-5  items-center flex'><span className='font-normal text-gray-500 font-sans mr-8'>Quantity </span> <span className="flex items-center gap-3"><button onClick={handleDecrease} className={`w-fit  text-gray-400 text-2xl   rounded-sm px-4 ${quantity == 1 && 'cursor-not-allowed bg-gray-100 ' || 'bg-gray-200'} `}>-</button><span className='w-3 text-center'>{quantity}</span><button onClick={handleIncrease} className={` w-fit  text-gray-400 text-2xl ${quantity==15?' bg-gray-100 cursor-not-allowed':'bg-gray-200'}  rounded-sm px-3`}>+</button></span></p>
+
+            <div className="flex  justify-between items-center">
+              {/* <button className="bg-gray-300 p-2 rounded-l-lg">-</button> */}
+              {/* <input type="number" className="w-12 text-center border-t border-b border-gray-300" defaultValue="1" /> */}
+              {/* <button className="bg-gray-300 p-2 rounded-r-lg">+</button> */}
+
+
             </div>
-            {/* Quantity and Buy/Add to Cart */}
-            <div className="flex items-center space-x-4 mb-4">
-              <div className="flex items-center">
-                {/* <button className="bg-gray-300 p-2 rounded-l-lg">-</button> */}
-                <input type="number" className="w-12 text-center border-t border-b border-gray-300" defaultValue="1" />
-                {/* <button className="bg-gray-300 p-2 rounded-r-lg">+</button> */}
-              </div>
-              <button className="py-2 px-4 bg-blue-500 text-white rounded-lg">Buy Now</button>
-              <button className="py-2 px-4 bg-orange-500 text-white rounded-lg">Add to Cart</button>
-            </div>
+            <div className="flex items-center gap-2">
+              <button className="py-2 px-0 bg-blue-500 text-white  rounded-lg">Buy Now</button>
+              <button className="py-2 px-0 bg-orange-500 text-white rounded-lg">Add to Cart</button>
             </div>
 
           </div>
-
-
-
-
-
-
-
-
-
-
-     
-
-
-
-
+        </div>
 
       </div>
 
 
 
-      );
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+  );
 };
 
-      export default Details;
+export default Details;

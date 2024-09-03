@@ -9,11 +9,12 @@ import Main_Layout from "./Main-Layout/Main_Layout";
 import Authentication from "./Componants/Authentication";
 import Login from "./Componants/LOGIN_&_SignUp/Login";
 import Home from "./Componants/Home";
-import Load from "./Load";
-import About from "./About";
+import Load from "./Componants/Load";
+import About from "./Componants/About";
 import Contract from "./Componants/Contract";
 import Servises from "./Componants/Servises";
 import Details from "./Componants/Details/Details";
+import Cart from "./Componants/Cart";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,9 @@ const router = createBrowserRouter([
     },
     {  path:'/details/:id',
       element:<Details></Details>
+    },
+    {  path:'/cart',
+      element:<Cart></Cart>
     },
    
     ]

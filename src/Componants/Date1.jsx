@@ -37,16 +37,7 @@ const Date1 = ({ data }) => {
             setTi(title)
         }
     }, [title])
-    const getSlicedText = (text) => {
-        const wordsArray = text.split(' ');
-
-
-        if (wordsArray.length >= 11) {
-            return wordsArray.slice(0, 10).join(' ') + '...';
-        } else {
-            return text;
-        }
-    };
+  
     const date = new Date(meta.createdAt)
     // console.log(date.toLocaleString())
     const myStyles = {
@@ -71,10 +62,10 @@ const Date1 = ({ data }) => {
                 {/* <img className='imge bg-cover h-[200px]'
                                 src={data?.images[0]}
                                 alt="Shoes" /> */}
-                <img className='imge bg-cover object-cover object-center  h-[200px]' 
-                src={data?.images[0]}
-                    srcset={`${data.images[0]} 0.1x,`}
-                    alt={data.images[1]}
+                <img className='imge bg-cover  object-center  h-[200px]' 
+                src={data?.thumbnail}
+                    srcset={`${data.thumbnail} 0.1x,`}
+                    alt={data.images[0]}
                     loading="lazy"></img>
 
             </figure>

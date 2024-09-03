@@ -29,7 +29,7 @@ const navLinks = [
 const Navbar = () => {
 
 
-  const { user, setLoading, loading,setSearchText } = useContext(context)
+  const { user, setLoading, loading, setSearchText } = useContext(context)
   const auth = getAuth();
   const handleSignOUt = () => {
     signOut(auth).then(() => {
@@ -54,7 +54,7 @@ const Navbar = () => {
     // setSearch(search)
     setSearchText(search)
 
- 
+
 
   }
   // const data={
@@ -63,7 +63,7 @@ const Navbar = () => {
 
   // useEffect(() => {
 
- 
+
 
   //   axios.post(`https://e-commerce-server-side-beta.vercel.app/product`, data)
 
@@ -71,10 +71,10 @@ const Navbar = () => {
 
   // }, [searchData])
 
- 
+
   return (
     <Disclosure as="nav" className="bg-gray-800 z-20  text-white">
-           {/* <BorderBeam /> */}
+      {/* <BorderBeam /> */}
       <div className="mx-auto  max-w-7xl px-2 sm:px-6  lg:px-8">
         <div className="relative  flex h-16 items-center justify-between">
           <div className="absolute  inset-y-0 left-0 flex items-center sm:hidden">
@@ -164,26 +164,30 @@ const Navbar = () => {
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
-              <BsCart4 aria-hidden="true" className="h-6 w-6" />
+              {/* cart button  */}
+              
+
+              <NavLink to={"/cart"}>     <BsCart4 aria-hidden="true" className="h-6 w-6" /></NavLink>
+
             </button>
 
             {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
+            <Menu as="div" className="relative ml-3 mt-1  ">
               <div className="  w-8">
-                <MenuButton className="relative flex rounded-full lg:w-9 w-7 bg-gray-800  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                <MenuButton className="relative flex rounded-full lg:w-9 w-7 bg-gray-800 text-sm focus:outline-none  focus:ring-offset-2">
                   <span className="absolute -inset-1.5 " />
-                  <span className="sr-only">Open user menu</span>
+                  <span className="sr-only ">Open user menu</span>
                   {user ? <img
                     alt=""
                     src={`${user?.photoURL}`}
-                    className="h-full w-full rounded-full"
-                  /> : <CgProfile className="h-8 w-10  rounded-full text-gray-400" />
+                    className="h-full   w-full rounded-full"
+                  /> : <CgProfile className="h-8 w-10  rounded-full   text-gray-400" />
                   }
                 </MenuButton>
               </div>
               <MenuItems
                 transition
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1   ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
                   {user ? <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
