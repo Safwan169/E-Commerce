@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import animation from './../../public/Animation - 1725348596165.json'
 import { context } from './Authentication';
 import axios from 'axios';
 import { IoIosArrowForward, IoIosArrowRoundForward } from "react-icons/io";
 import Date1 from './Date1';
+import Lottie from 'lottie-react';
+import Loading from './Loading/Loading';
 
 const Home = () => {
 
@@ -296,24 +299,26 @@ const Home = () => {
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <h2 className="text-2xl flex items-center gap-2 font-bold tracking-tight text-left text-gray-900">Customers also purchased <IoIosArrowRoundForward size={30} /></h2>
 
-                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {
-                            main?.map(data => <Date1 data={data}></Date1>)
-                        }
-                    </div>
+                    {
+                        main ? <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                            {
+                                main?.map(data => <Date1 data={data}></Date1>)
+                    }
+                        </div>: <Loading></Loading>
+                  }
                 </div>
             </div>
 
 
-            <div className=' flex mx-auto mt-6 border b  gap-1 w-64 '>
+           {main ? <div className=' flex mx-auto mt-6 border b  gap-1 w-64 '>
                 <button onClick={handlePre} className='text-black border border-solid w-20   border-gray-400'>Previous</button>
 
 
                 {data?.map(data => <button onClick={() => handleBtn(data)} value={data} className={btn == data ? 'text-white bg-blue-500 border w-5 text-center rounded-lg  border-solid border-gray-400' : " border w-5 text-center rounded-lg text-black border-solid border-gray-400"}>{data + 1}</button>)}
                 <button onClick={handleNxt} className='text-black border border-solid w-20   border-gray-400'>Next</button>
 
-            </div>
-
+            </div>:''
+}
 
 
         </>
