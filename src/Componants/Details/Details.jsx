@@ -94,18 +94,20 @@ const handlePictureChange=(data,index)=>{
     // </div>
 
 
-    <div className="w-full mx-auto lg:p-10">
+    <div className="w-full mx-auto md:p-10 p-2 lg:p-10">
 
-      <div>
-
+      <div className=''>
+{/* for details image  */}
         <div>
-            <img className='lg:w-1/3 rounded-lg border border-gray-200' 
+
+          {/* main image */}
+            <img className='lg:w-1/3 md:w-1/3  rounded-lg border border-gray-200' 
                 src={picture?picture:data1?.images[0]}
                 srcset={`${picture?picture:data1?.images[0]} 0.1x,`}
                 alt={data1?.images[1]}
                 loading="lazy"/>
 
-
+            {/* Additional  image */}
                 <div className='flex mt-4 gap-2' >
                 {
                   data1?.images.map((data,index)=><img onClick={()=>handlePictureChange(data,index)} className={`${(index==style) &&'border-red-600 border' } w-16 h-16 rounded-lg border border-gray-300`}
@@ -119,6 +121,12 @@ const handlePictureChange=(data,index)=>{
                 </div>
 
         </div>
+
+
+
+
+
+
 
 
 
