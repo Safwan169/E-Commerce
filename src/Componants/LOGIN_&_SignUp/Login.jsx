@@ -8,18 +8,37 @@ import { FcGoogle } from "react-icons/fc";
 // import { BorderBeam } from "@/components/magicui/border-beam.tsx";
 
 
-const handleGoogle = () => {
-    const auth = getAuth()
-    const provider = new GoogleAuthProvider()
-    signInWithPopup(auth, provider)
-    console.log('dsdfsdf')
-}
 
 const Login = () => {
     const [toggle, setToggle] = useState(false)
     const [toggle2, setToggle2] = useState(false)
     const navigate = useNavigate();
     const { signIN, signUp, loading, setLoading } = useContext(context)
+
+
+    
+const handleGoogle = () => {
+    const auth = getAuth()
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(auth, provider)
+.then((userCredential)=>{
+
+
+    const user = userCredential.user;
+
+
+
+    if (user) {
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Success Fully Sign In",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+    navigate('/')
+})}
 
 
 

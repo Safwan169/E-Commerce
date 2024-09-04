@@ -62,6 +62,16 @@ const Details = () => {
 
   }
 
+  // add to cart 
+  const handleAddCart=()=>{
+
+    
+
+
+
+
+  }
+
 
   return (
 
@@ -182,7 +192,7 @@ const Details = () => {
             </div>
             <div className="flex items-center gap-2">
               <button className="py-2 px-0 bg-blue-500 text-white  rounded-lg">Buy Now</button>
-              <button className="py-2 px-0 bg-orange-500 text-white rounded-lg">Add to Cart</button>
+              <button onClick={handleAddCart} className="py-2 px-0 bg-orange-500 text-white rounded-lg">Add to Cart</button>
             </div>
 
           </div>

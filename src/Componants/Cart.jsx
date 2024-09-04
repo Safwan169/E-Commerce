@@ -2,8 +2,8 @@ import React from 'react';
 
 const Cart = () => {
     return (
-        <div>
-            adfasdf
+        <div className='min-h-svh'>
+            cart
         </div>
     );
 };
