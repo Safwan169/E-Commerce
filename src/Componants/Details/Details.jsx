@@ -6,6 +6,7 @@ import '@smastrom/react-rating/style.css'
 import Loading from '../Loading/Loading';
 import { context } from '../Authentication';
 import Swal from 'sweetalert2';
+import Test from '../LOGIN_&_SignUp/test';
 
 
 
@@ -13,6 +14,9 @@ import Swal from 'sweetalert2';
 
 const Details = () => {
   const location = useLocation()
+
+  const {data}= Test()
+  console.log(data)
 
 
   const { user } = useContext(context)
@@ -91,7 +95,7 @@ const Details = () => {
 
       }
 
-      axios.post(`http://localhost:5000/cart`, data)
+      axios.post(`https://e-commerce-server-side-beta.vercel.app/cart`, data)
         .then(
 
           Swal.fire({
@@ -102,7 +106,11 @@ const Details = () => {
             timer: 1500
         })
 
+      
+
+
         )
+
 
     }
 
