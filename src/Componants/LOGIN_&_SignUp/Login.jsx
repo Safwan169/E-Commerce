@@ -59,7 +59,7 @@ const handleGoogle = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "",
+                        title: "Successfully Sign IN",
                         showConfirmButton: false,
                         timer: 1500
                     });
