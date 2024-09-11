@@ -3,13 +3,18 @@ import { context } from '../Authentication';
 import Swal from 'sweetalert2'
 import '././style.css'
 import { getAuth, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation, useParams } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 // import { BorderBeam } from "@/components/magicui/border-beam.tsx";
 
 
 
 const Login = () => {
+
+
+ const path=useLocation()
+ console.log(path)
+
     const [toggle, setToggle] = useState(false)
     const [toggle2, setToggle2] = useState(false)
     const navigate = useNavigate();
@@ -37,7 +42,7 @@ const handleGoogle = () => {
             timer: 1500
         });
     }
-    navigate('/')
+    navigate(path?.state?.pathname||'/')
 })}
 
 
@@ -64,7 +69,7 @@ const handleGoogle = () => {
                         timer: 1500
                     });
             
-                navigate('/')
+                    navigate(path?.state?.pathname||'/')
 
             })
     }
@@ -114,7 +119,7 @@ const handleGoogle = () => {
                         timer: 1500
                     });
                 }
-                navigate('/')
+                navigate(path?.state?.pathname||'/')
             })
             .catch((error) => {
 

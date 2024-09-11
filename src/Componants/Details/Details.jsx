@@ -1,12 +1,23 @@
 import { Rating, ThinStar } from '@smastrom/react-rating'
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate, useNavigation, useParams } from 'react-router-dom';
 import '@smastrom/react-rating/style.css'
 import Loading from '../Loading/Loading';
+import { context } from '../Authentication';
+import Swal from 'sweetalert2';
+
+
+
 
 
 const Details = () => {
+  const location = useLocation()
+
+
+  const { user } = useContext(context)
+
+  const navigate = useNavigate()
 
 
   const [data1, setData] = useState()
@@ -63,9 +74,45 @@ const Details = () => {
   }
 
   // add to cart 
-  const handleAddCart=()=>{
+  const handleAddCart = () => {
 
-    
+    if (user) {
+
+      const data = {
+        email: user?.email,
+        image: data1?.thumbnail,
+        brand: data1?.brand,
+        title: data1?.title,
+        price: data1?.price,
+        description: data1?.description,
+        quantity,
+        id:data1?._id
+
+
+      }
+
+      axios.post(`http://localhost:5000/cart`, data)
+        .then(
+
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfully Add To The Cart",
+            showConfirmButton: false,
+            timer: 1500
+        })
+
+        )
+
+    }
+
+
+
+    else navigate('/login', { state: location })
+
+
+
+
 
 
 
@@ -181,7 +228,7 @@ const Details = () => {
           {/* Quantity and Buy/Add to Cart */}
           <div className=" items-center mb-4">
 
-            <p className='my-5  items-center flex'><span className='font-normal text-gray-500 font-sans mr-8'>Quantity </span> <span className="flex items-center gap-3"><button onClick={handleDecrease} className={`w-fit  text-gray-400 text-2xl   rounded-sm px-4 ${quantity == 1 && 'cursor-not-allowed bg-gray-100 ' || 'bg-gray-200'} `}>-</button><span className='w-3 text-center'>{quantity}</span><button onClick={handleIncrease} className={` w-fit  text-gray-400 text-2xl ${quantity==15?' bg-gray-100 cursor-not-allowed':'bg-gray-200'}  rounded-sm px-3`}>+</button></span></p>
+            <p className='my-5  items-center flex'><span className='font-normal text-gray-500 font-sans mr-8'>Quantity </span> <span className="flex items-center gap-3"><button onClick={handleDecrease} className={`w-fit  text-gray-400 text-2xl   rounded-sm px-4 ${quantity == 1 && 'cursor-not-allowed bg-gray-100 ' || 'bg-gray-200'} `}>-</button><span className='w-3 text-center'>{quantity}</span><button onClick={handleIncrease} className={` w-fit  text-gray-400 text-2xl ${quantity == 15 ? ' bg-gray-100 cursor-not-allowed' : 'bg-gray-200'}  rounded-sm px-3`}>+</button></span></p>
 
             <div className="flex  justify-between items-center">
               {/* <button className="bg-gray-300 p-2 rounded-l-lg">-</button> */}
