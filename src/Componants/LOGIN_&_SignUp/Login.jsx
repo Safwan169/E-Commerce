@@ -55,7 +55,7 @@ const handleGoogle = () => {
 
 
 
-                if (user) {
+              
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -63,7 +63,7 @@ const handleGoogle = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                }
+            
                 navigate('/')
 
             })
