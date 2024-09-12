@@ -16,6 +16,8 @@ import Servises from "./Componants/Servises";
 import Details from "./Componants/Details/Details";
 import Cart from "./Componants/Cart";
 import { QueryClient, QueryClientProvider } from 'react-query'
+import UserLoading from "./Componants/Loading/UserLoading";
+import Private from "./Componants/PrivateRoute/Private";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element: <Contract></Contract>
+        element:   <Contract></Contract>
       },
       {
         path: '/services',
@@ -47,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart></Cart>
+        element: <UserLoading>  <Cart></Cart> </UserLoading> 
       },
 
     ]

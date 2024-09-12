@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 // import { useContext, useEffect, useState } from "react";
@@ -6,11 +6,12 @@ import { context } from "./Authentication";
 import { CgProfile } from "react-icons/cg";
 import { getAuth, signOut } from "firebase/auth";
 import Swal from "sweetalert2";
-import { BsCart4 } from "react-icons/bs";
+import { Bs0CircleFill, Bs1CircleFill, BsCart4, BsCircleFill } from "react-icons/bs";
 // import Home from "./Home";
 import axios from 'axios';
 import Home from "./Home";
 import { useContext } from "react";
+import Test from "./LOGIN_&_SignUp/test";
 // import { BorderBeam } from "@components/magicui/border-beam.tsx";
 
 
@@ -28,20 +29,38 @@ const navLinks = [
 
 const Navbar = () => {
 
+  const navigate = useNavigate()
+
+  const [data] = Test()
+
+
+
+  //   const location =useLocation()
+  // console.log(location)
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
 
   const { user, setLoading, loading, setSearchText } = useContext(context)
   const auth = getAuth();
   const handleSignOUt = () => {
     signOut(auth).then(() => {
 
-      Swal.fire({
-        position: "center",
+      Toast.fire({
         icon: "success",
-        title: "Successfully SignOut",
-        showConfirmButton: false,
-        timer: 1500
+        title: "Signed in successfully"
       });
       setLoading(!loading)
+      navigate('/')
 
     })
   }
@@ -57,20 +76,23 @@ const Navbar = () => {
 
 
   }
-  // const data={
-  //   name:searchData
-  // }
-
-  // useEffect(() => {
 
 
+  // for cart
 
-  //   axios.post(`https://e-commerce-server-side-beta.vercel.app/product`, data)
 
-  //     .then(res => Home(res.data))
+  const handleCart = () => {
 
-  // }, [searchData])
+    if (user) {
+      navigate('/cart')
 
+    }
+
+    else {
+      navigate('/login', { state: { pathname: '/cart' } })
+    }
+
+  }
 
   return (
     <Disclosure as="nav" className="bg-gray-800 z-20  text-white">
@@ -168,9 +190,15 @@ const Navbar = () => {
 
 
 
-              <NavLink to="/cart" className="">
-                <BsCart4 aria-hidden="true" className="h-6 w-6" />
-              </NavLink>
+              <button onClick={handleCart} className=" h-7  w-8">
+                <BsCart4 aria-hidden="true" className={`${user ? data ? 'text-gray-100' : 'text-gray-400' : 'text-gray-400'} h-full w-full`} />
+
+
+                
+
+                  {user&&data?<div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{data?.length}</span></div>:""}
+
+              </button>
 
 
 

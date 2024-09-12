@@ -12,6 +12,19 @@ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
 
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+
+
  const path=useLocation()
  console.log(path)
 
@@ -34,13 +47,10 @@ const handleGoogle = () => {
 
 
     if (user) {
-        Swal.fire({
-            position: "top-end",
+        Toast.fire({
             icon: "success",
-            title: "Success Fully Sign In",
-            showConfirmButton: false,
-            timer: 1500
-        });
+            title: "Signed in successfully"
+          });
     }
     navigate(path?.state?.pathname||'/')
 })}
@@ -60,14 +70,10 @@ const handleGoogle = () => {
 
 
 
-              
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Successfully Sign IN",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                Toast.fire({
+                    icon: "success",
+                    title: "Signed in successfully"
+                  })
             
                     navigate(path?.state?.pathname||'/')
 
@@ -111,13 +117,10 @@ const handleGoogle = () => {
                 })
 
                 if (user) {
-                    Swal.fire({
-                        position: "center",
+                    Toast.fire({
                         icon: "success",
-                        title: "Successfully Register",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                        title: "Register in successfully"
+                      })
                 }
                 navigate(path?.state?.pathname||'/')
             })

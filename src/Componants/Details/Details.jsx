@@ -189,14 +189,14 @@ const Details = () => {
     // </div>
 
 
-    <div className="w-full mx-auto md:p-4 p-2 lg:p-10">
+    <div className="w-full  bg-gray-100 mx-auto md:p-4 p-2 lg:p-10">
 
-      <div className='lg:flex md:flex '>
+      <div className='lg:flex p-4 bg-white md:flex '>
         {/* for details image  */}
         <div className='w-full '>
 
           {/* main image */}
-          <img className='lg:w-3/4 md:w-3/4 lg:h-3/4 bg-cover rounded-lg border border-gray-200'
+          <img className='lg:w-1/2 md:w-3/4 lg:h-3/4 lg:bg-cover rounded-lg border border-gray-200'
             src={picture ? picture : data1?.thumbnail}
             srcset={`${picture ? picture : data1?.thumbnail} 0.1x,`}
             loading="lazy" />
