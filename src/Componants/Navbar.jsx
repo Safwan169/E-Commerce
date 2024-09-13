@@ -191,12 +191,12 @@ const Navbar = () => {
 
 
               <button onClick={handleCart} className=" h-7  w-8">
-                <BsCart4 aria-hidden="true" className={`${user ? data ? 'text-gray-100' : 'text-gray-400' : 'text-gray-400'} h-full w-full`} />
+                <BsCart4 aria-hidden="true" className={`${user ? data?.length>0? 'text-gray-100' : 'text-gray-400' : 'text-gray-400'} h-full w-full`} />
 
 
                 
 
-                  {user&&data?<div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{data?.length}</span></div>:""}
+                  {user&&data?.length>0?<div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{data?.length}</span></div>:""}
 
               </button>
 

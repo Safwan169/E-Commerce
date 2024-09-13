@@ -3,9 +3,9 @@ import animation from './../../public/Animation - 1725348596165.json'
 import { context } from './Authentication';
 import axios from 'axios';
 import { IoIosArrowForward, IoIosArrowRoundForward } from "react-icons/io";
-import Date1 from './Date1';
 import Lottie from 'lottie-react';
 import Loading from './Loading/Loading';
+import Card from './Card';
 
 const Home = () => {
 
@@ -302,7 +302,7 @@ const Home = () => {
                     {
                         main ? <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                             {
-                                main?.map(data => <Date1 data={data}></Date1>)
+                                main?.map(data => <Card data={data}></Card>)
                     }
                         </div>: <Loading></Loading>
                   }

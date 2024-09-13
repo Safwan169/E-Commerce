@@ -1,7 +1,7 @@
 import React from 'react';
 import Test from './LOGIN_&_SignUp/test';
 
-const Cart = () => {
+const AddCart = () => {
 
     const [data] = Test()
     console.log(data)
@@ -13,4 +13,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default AddCart;

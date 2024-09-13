@@ -14,10 +14,10 @@ import About from "./Componants/About";
 import Contract from "./Componants/Contract";
 import Servises from "./Componants/Servises";
 import Details from "./Componants/Details/Details";
-import Cart from "./Componants/Cart";
 import { QueryClient, QueryClientProvider } from 'react-query'
 import UserLoading from "./Componants/Loading/UserLoading";
 import Private from "./Componants/PrivateRoute/Private";
+import AddCart from "./Componants/AddCart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <UserLoading>  <Cart></Cart> </UserLoading> 
+        element: <UserLoading>  <AddCart></AddCart> </UserLoading> 
       },
 
     ]

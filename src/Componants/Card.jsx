@@ -5,7 +5,7 @@ import { Rating, ThinStar } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { useNavigate } from 'react-router-dom';
 
-const Date1 = ({ data }) => {
+const Card = ({ data }) => {
     // console.log(data)
     const { brand, category, meta, title, price, rating, reviews, description, images, _id, id } = data
     // console.log(rating)
@@ -91,4 +91,4 @@ const Date1 = ({ data }) => {
     );
 };
 
-export default Date1;
+export default Card;
