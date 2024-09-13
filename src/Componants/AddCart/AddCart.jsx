@@ -1,5 +1,5 @@
 import React from 'react';
-import Test from './LOGIN_&_SignUp/test';
+import Test from '../LOGIN_&_SignUp/test';
 
 const AddCart = () => {
 

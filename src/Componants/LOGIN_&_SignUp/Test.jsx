@@ -6,15 +6,18 @@ import {useQuery} from 'react-query'
 
 const Test = () => {
     const {user}=useContext(context)
-    console.log(user?.email)
+    // console.log(user?.email)
 
     const { refetch, error, data } = useQuery({
         queryKey: ['repoData'],
+
+        enabled:!!user?.email,
         queryFn: async() =>{
          const res= await axios.get(`http://localhost:5000/cart?email=${user?.email}`)
          return (res.data)
 
         }})
+       
 
 
 //    useEffect(()=>{

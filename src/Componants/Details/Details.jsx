@@ -15,8 +15,8 @@ import Test from '../LOGIN_&_SignUp/test';
 const Details = () => {
   const location = useLocation()
 
-  const {data}= Test()
-  console.log(data)
+  const [refetch]= Test()
+  // console.log(data)
 
 
   const { user } = useContext(context)
@@ -98,6 +98,9 @@ const Details = () => {
       axios.post(`https://e-commerce-server-side-beta.vercel.app/cart`, data)
         .then(
 
+
+
+
           Swal.fire({
             position: "center",
             icon: "success",
@@ -106,10 +109,14 @@ const Details = () => {
             timer: 1500
         })
 
+
+       
+
       
 
 
         )
+
 
 
     }

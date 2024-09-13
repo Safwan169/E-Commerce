@@ -17,7 +17,7 @@ import Details from "./Componants/Details/Details";
 import { QueryClient, QueryClientProvider } from 'react-query'
 import UserLoading from "./Componants/Loading/UserLoading";
 import Private from "./Componants/PrivateRoute/Private";
-import AddCart from "./Componants/AddCart";
+import AddCart from "./Componants/AddCart/AddCart";
 const router = createBrowserRouter([
   {
     path: "/",
