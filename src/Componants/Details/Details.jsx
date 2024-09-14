@@ -15,7 +15,7 @@ import Test from '../LOGIN_&_SignUp/test';
 const Details = () => {
   const location = useLocation()
 
-  const [refetch]= Test()
+  const [, ,refetch]= Test()
   // console.log(data)
 
 
@@ -107,7 +107,11 @@ const Details = () => {
             title: "Successfully Add To The Cart",
             showConfirmButton: false,
             timer: 1500
-        })
+        }),
+
+
+        refetch()
+
 
 
        

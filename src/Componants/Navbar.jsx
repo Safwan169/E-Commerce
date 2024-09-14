@@ -12,6 +12,7 @@ import axios from 'axios';
 import Home from "./Home";
 import { useContext } from "react";
 import Test from "./LOGIN_&_SignUp/test";
+import AddCart from "./AddCart/AddCart";
 // import { BorderBeam } from "@components/magicui/border-beam.tsx";
 
 
@@ -32,6 +33,12 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const [data] = Test()
+
+
+  const totalNumber=data.reduce(acc,currentValue=>{
+    acc+currentValue.quantity
+
+  },0)
 
 
 
@@ -140,7 +147,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* search input end  */}
+            {/* Navbar text */}
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navLinks.map((link, index) => (
@@ -196,7 +203,7 @@ const Navbar = () => {
 
                 
 
-                  {user?data?<div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{data.length}</span></div>:"":''}
+                  {user?data?<div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{totalNumber}</span></div>:"":''}
 
               </button>
 

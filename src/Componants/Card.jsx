@@ -39,7 +39,8 @@ const Card = ({ data }) => {
     }, [title])
   
     const date = new Date(meta.createdAt)
-    // console.log(date.toLocaleString())
+
+    // rating style
     const myStyles = {
         itemShapes: ThinStar,
         activeFillColor: '#ffb700',

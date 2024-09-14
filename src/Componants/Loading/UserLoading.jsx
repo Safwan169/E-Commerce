@@ -4,9 +4,9 @@ import Lottie from 'lottie-react';
 import animation from '../../../public/loading.json'
 
 const UserLoading = ({ children }) => {
-    const { user } = useContext(context)
+    const { loading } = useContext(context)
 
-    if (!user) {
+    if (!loading) {
 
         return (
 
