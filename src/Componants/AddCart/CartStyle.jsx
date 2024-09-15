@@ -1,7 +1,7 @@
 import { Rating, ThinStar } from '@smastrom/react-rating';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import Test from '../LOGIN_&_SignUp/test';
+import Test from '../Test';
 import { context } from '../Authentication';
 
 const CartStyle = ({ data1 }) => {

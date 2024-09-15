@@ -1,7 +1,7 @@
 import React from 'react';
-import Test from '../LOGIN_&_SignUp/test';
 import { useState } from 'react'
 import CartStyle from './CartStyle';
+import Test from '../Test';
 
 
 const AddCart = () => {

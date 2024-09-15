@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { context } from '../Authentication';
+import { context } from './Authentication';
 import {useQuery} from 'react-query'
 
 

@@ -11,7 +11,7 @@ import { Bs0CircleFill, Bs1CircleFill, BsCart4, BsCircleFill } from "react-icons
 import axios from 'axios';
 import Home from "./Home";
 import { useContext, useEffect, useState } from "react";
-import Test from "./LOGIN_&_SignUp/test";
+import Test from "./Test";
 import AddCart from "./AddCart/AddCart";
 // import { BorderBeam } from "@components/magicui/border-beam.tsx";
 
