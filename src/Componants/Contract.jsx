@@ -1,5 +1,4 @@
 import React from 'react';
-import Test from './LOGIN_&_SignUp/test';
 
 const Contract = () => {
 
