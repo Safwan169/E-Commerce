@@ -42,7 +42,8 @@ const CartStyle = ({ data1 }) => {
             .then(
                 setCartLength(!cartLength), 
 
-            refetch()               
+            refetch()   ,            
+console.log('sf')
 
             )
 
