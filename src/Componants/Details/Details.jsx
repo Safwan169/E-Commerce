@@ -6,7 +6,7 @@ import '@smastrom/react-rating/style.css'
 import Loading from '../Loading/Loading';
 import { context } from '../Authentication';
 import Swal from 'sweetalert2';
-import Test from '../LOGIN_&_SignUp/test';
+import Test from '../Test';
 
 
 
