@@ -6,7 +6,7 @@ import {useQuery} from 'react-query'
 
 const Test = () => {
     const {user}=useContext(context)
-    // console.log(user?.email)
+    console.log(user?.email)
 
     const { refetch,isLoading,isFetching, data } = useQuery({
         queryKey: ['repoData'],
