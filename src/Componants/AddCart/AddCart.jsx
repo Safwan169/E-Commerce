@@ -6,30 +6,38 @@ import CartStyle from './CartStyle';
 
 const AddCart = () => {
 
-    const [data] = Test()
-    console.log(data)
+    const [data,refetch,isLoading,isFetching] = Test()
 
-    const datas=[data]
+    console.log('isLoading',isFetching)
 
-    const [quantity, setQuantity] = useState(1);
-    const itemPrice = 91;
-    const shippingFee = 0;
-    const discountPrice = 400;
+    // console.log(data)
 
-    const handleIncrease = () => {
-        setQuantity(quantity + 1);
-    };
+    // const datas=[data]
 
-    const handleDecrease = () => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
-        }
-    }
+    // const [quantity, setQuantity] = useState(1);
+
+
+    // const handleIncrease = () => {
+    //     setQuantity(quantity + 1);
+    // };
+
+    // const handleDecrease = () => {
+    //     if (quantity > 1) {
+    //         setQuantity(quantity - 1);
+    //     }
+    // }
     return (
-        <div className='lg:flex flex-col lg:p-10 p-0 md:p-4'>
-         <div className='space-y-5'>
-            {data?.map((d)=><CartStyle data={d}></CartStyle>)}
-         </div>
+        <div className='lg:flex text-black flex-col lg:p-10 p-0 md:p-4'>
+
+           
+         <div className='space-y-5'> 
+            {data?.map((d)=><CartStyle data1={d}></CartStyle>)}
+          </div>
+
+
+          {
+            isLoading?<div>loading...</div>:'  '
+          }
         </div>
 
 

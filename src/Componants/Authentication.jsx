@@ -12,6 +12,7 @@ const Authentication = ({children}) => {
 const auth = getAuth(app);
 const [user,setUser]=useState()
 const [loading,setLoading]=useState(true)
+const [loading1,setLoading1]=useState(true)
 
 
 
@@ -29,6 +30,8 @@ useEffect(()=>{
    const unsubscribe= onAuthStateChanged(auth, (user) => {
     setUser(user)
 
+    setLoading1(!loading1)
+
         if (user) {
         
         } else {
@@ -44,12 +47,13 @@ useEffect(()=>{
 const [search,setSearchText]=useState()
 const [searchData,setSearchData]=useState()
 const [load,setLoad]=useState(false)
+const [cartLength,setCartLength]=useState(true)
 // console.log(search)
 
 useEffect(() => {
    
    
-    console.log(search)
+    // console.log(search)
 
     axios.post(`https://e-commerce-server-side-beta.vercel.app/products`)
 
@@ -69,7 +73,9 @@ const data={
     setSearchText,
     searchData,
     load,
-    search
+    search,
+    setCartLength,
+    cartLength
     
 }
 

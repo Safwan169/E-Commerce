@@ -10,7 +10,7 @@ import { Bs0CircleFill, Bs1CircleFill, BsCart4, BsCircleFill } from "react-icons
 // import Home from "./Home";
 import axios from 'axios';
 import Home from "./Home";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Test from "./LOGIN_&_SignUp/test";
 import AddCart from "./AddCart/AddCart";
 // import { BorderBeam } from "@components/magicui/border-beam.tsx";
@@ -32,13 +32,25 @@ const Navbar = () => {
 
   const navigate = useNavigate()
 
+  const { cartLength } = useContext(context)
+
   const [data] = Test()
+  const [totalNumber, setTotalnumber] = useState()
+
+  console.log(totalNumber)
+
+  useEffect(() => {
 
 
-  const totalNumber=data.reduce(acc,currentValue=>{
-    acc+currentValue.quantity
 
-  },0)
+    const quantity = data?.reduce((acc, currentValue) => {
+      return (acc + currentValue?.quantity)
+
+    }, 0)
+    setTotalnumber(quantity)
+
+
+  }, [cartLength,data])
 
 
 
@@ -198,12 +210,12 @@ const Navbar = () => {
 
 
               <button onClick={handleCart} className=" h-7  w-8">
-                <BsCart4 aria-hidden="true" className={`${user ? data? 'text-gray-100' : 'text-gray-400' : 'text-gray-400'} h-full w-full`} />
+                <BsCart4 aria-hidden="true" className={`${user ? data ? 'text-gray-100' : 'text-gray-400' : 'text-gray-400'} h-full w-full`} />
 
 
-                
 
-                  {user?data?<div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{totalNumber}</span></div>:"":''}
+
+                {user ? totalNumber ? <div><span className="absolute top-0 text-[8px]  -right-1 pt-[2px] mx-auto bg-white  text-center rounded-2xl font-semibold w-[14px] h-[14px] text-gray-500 ">{totalNumber}</span></div> : "" : ''}
 
               </button>
 

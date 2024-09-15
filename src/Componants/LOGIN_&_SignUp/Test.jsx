@@ -8,23 +8,18 @@ const Test = () => {
     const {user}=useContext(context)
     // console.log(user?.email)
 
-    const { refetch, error, data } = useQuery({
+    const { refetch,isLoading,isFetching, data } = useQuery({
         queryKey: ['repoData'],
 
         enabled:!!user?.email,
         queryFn: async() =>{
          const res= await axios.get(`https://e-commerce-server-side-beta.vercel.app/cart?email=${user?.email}`)
-         return (res.data)
+         return (res?.data)
 
         }})
        
 
-
-//    useEffect(()=>{
-//     axios.get('http://localhost:5000/cart',user?.email)
-//     .then(res=>setData(res.data))
-//    },[loading])
-    return [data,refetch]
+    return [data,refetch,isLoading,isFetching,]
 };
 
 export default Test;
