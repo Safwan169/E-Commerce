@@ -12,7 +12,7 @@ const Test = () => {
 
         enabled:!!user?.email,
         queryFn: async() =>{
-         const res= await axios.get(`https://e-commerce-server-side-beta.vercel.app/cart?email=${user?.email}`)
+         const res= await axios.get(`http://localhost:5000/cart?email=${user?.email}`)
          return (res?.data)
 
         }})

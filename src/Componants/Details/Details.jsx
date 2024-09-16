@@ -27,7 +27,7 @@ const Details = () => {
   const [data1, setData] = useState()
   const idData = useParams().id
   useEffect(() => {
-    axios.get(`https://e-commerce-server-side-beta.vercel.app/details/${idData}`)
+    axios.get(`http://localhost:5000/details/${idData}`)
       .then(res => setData(res.data))
 
   }, [])
@@ -95,7 +95,7 @@ const Details = () => {
 
       }
 
-      axios.post(`https://e-commerce-server-side-beta.vercel.app/cart`, data)
+      axios.post(`http://localhost:5000/cart`, data)
         .then(res => {
 
           if (res?.data?.acknowledged) {

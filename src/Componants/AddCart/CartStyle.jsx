@@ -6,7 +6,7 @@ import { context } from '../Authentication';
 
 const CartStyle = ({ data1 }) => {
 
-    const { image, title, description, brand, price, id } = data1
+    const { image, title, description, brand, price, id, email } = data1
 
     const [data, refetch, ,] = Test()
     const { setCartLength, cartLength } = useContext(context)
@@ -37,30 +37,35 @@ const CartStyle = ({ data1 }) => {
         if (quantity !== 15) {
             setQuantity(quantity + 1)
 
+            setCartLength(true),
 
-            axios.post('https://e-commerce-server-side-beta.vercel.app/cartInc', { id })
-                .then(res => {
-
-
-
-                    if (res?.data?.acknowledged) {
+                axios.post('http://localhost:5000/cartInc', { email, id })
+                    .then(res => {
 
 
-                        refetch(),
-                            setCartLength(!cartLength),
+
+                        if (res?.data?.acknowledged) {
+
+
+                            refetch(),
+                                setTimeout(() => {
+                                    setCartLength(false)
+
+                                }, 2000);
 
                             console.log('incc');
 
+                        }
+
+                        else {
+                            console.log('error');
+                        }
                     }
 
-                    else{console.log('error');
-                    }
-                }
 
 
 
-
-                )
+                    )
 
 
 
@@ -80,31 +85,37 @@ const CartStyle = ({ data1 }) => {
         if (quantity !== 1)
 
             setQuantity(quantity - 1)
-
-        axios.post('https://e-commerce-server-side-beta.vercel.app/cartDec', { id })
-
-        .then(res => {
+        setCartLength(true)
 
 
+        axios.post('http://localhost:5000/cartDec', { email, id })
 
-            if (res?.data?.acknowledged) {
+            .then(res => {
 
 
-                refetch(),
-                    setCartLength(!cartLength),
 
+                if (res?.data?.acknowledged) {
+
+
+                    refetch(),
+                        refetch(),
+                        setTimeout(() => {
+                            setCartLength(false)
+
+                        }, 2000);
                     console.log('incc');
 
+                }
+
+                else {
+                    console.log('error');
+                }
             }
 
-            else{console.log('error');
-            }
-        }
 
 
 
-
-        )
+            )
 
 
 

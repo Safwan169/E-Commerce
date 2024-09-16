@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react'
 import CartStyle from './CartStyle';
 import Test from '../Test';
 import Loading from '../Loading/Loading';
+import Lottie from 'lottie-react';
+
+import animation from './../../../public/cartLoader.json'
+import { context } from '../Authentication';
 
 
 const AddCart = () => {
 
   const [data, , , isFetching] = Test()
+
+
+  const {cartLength}=useContext(context)
 
 
   // console.log(data)
@@ -39,7 +46,7 @@ const AddCart = () => {
 
 
           {
-            isFetching ? <div className=' absolute  left-1/2 -translate-x-1/2 h-full top-1/2   mx-auto items-center justify-center  text-justify flex '>loading....</div> : '  '
+            cartLength ? <div className='  bg-opacity-25 fixed top-0 bg-slate-900  font-white left-1/2 -translate-x-1/2   h-svh w-full    mx-auto items-center justify-center  text-justify flex '><Lottie  animationData={animation}></Lottie></div> : '  '
           }
       </div>
     </div>
