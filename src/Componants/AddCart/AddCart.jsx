@@ -27,7 +27,7 @@ const AddCart = () => {
   //     }
   // }
   return (
-    <div className='border border-red-500'>
+    <div className=''>
 
 
       <div className='lg:flex text-black flex-col lg:p-10 p-0 md:p-4'>
