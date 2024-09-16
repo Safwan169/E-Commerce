@@ -6,12 +6,12 @@ import { context } from '../Authentication';
 
 const CartStyle = ({ data1 }) => {
 
-    const { image, title, description, brand, price ,id} = data1
+    const { image, title, description, brand, price, id } = data1
 
-    const [data,refetch, , ]=Test()
-    const {setCartLength,cartLength}=useContext(context)
+    const [data, refetch, ,] = Test()
+    const { setCartLength, cartLength } = useContext(context)
 
-    
+
 
 
     const des = description.split(' ')
@@ -34,18 +34,36 @@ const CartStyle = ({ data1 }) => {
     const handleIncrease = () => {
 
 
-        if (quantity !==  15 ) {
-
+        if (quantity !== 15) {
             setQuantity(quantity + 1)
 
-            axios.post('https://e-commerce-server-side-beta.vercel.app/cartInc',{id})
-            .then(
-                setCartLength(!cartLength), 
 
-            refetch()   ,            
-console.log('sf')
+            axios.post('https://e-commerce-server-side-beta.vercel.app/cartInc', { id })
+                .then(res => {
 
-            )
+
+
+                    if (res?.data?.acknowledged) {
+
+
+                        refetch(),
+                            setCartLength(!cartLength),
+
+                            console.log('incc');
+
+                    }
+
+                    else{console.log('error');
+                    }
+                }
+
+
+
+
+                )
+
+
+
 
 
 
@@ -63,14 +81,31 @@ console.log('sf')
 
             setQuantity(quantity - 1)
 
-            axios.post('https://e-commerce-server-side-beta.vercel.app/cartDec',{id})
-            
-               .then(
+        axios.post('https://e-commerce-server-side-beta.vercel.app/cartDec', { id })
 
-                setCartLength(!cartLength),
-                refetch()                
-            
-               )
+        .then(res => {
+
+
+
+            if (res?.data?.acknowledged) {
+
+
+                refetch(),
+                    setCartLength(!cartLength),
+
+                    console.log('incc');
+
+            }
+
+            else{console.log('error');
+            }
+        }
+
+
+
+
+        )
+
 
 
 
@@ -95,13 +130,13 @@ console.log('sf')
                 <p className='text-[10px] lg:hidden md:hidden block '>{desDataSmall}</p>
                 <p className='md:text-xs lg:text-xs text-[10px] font-serif text-gray-400'>{brand || "No Brand"}</p>
                 <p className='flex lg:flex-col md:flex-col gap-10 w-full justify-between  lg:gap-2 md:gap-2 items-center lg:items-start md:items-start   '>
-                    <p  className='flex  my-3 w-fit items-center text-left'>
+                    <p className='flex  my-3 w-fit items-center text-left'>
                         <button onClick={handleDecrease} className={`w-fit   text-gray-400 text-2xl   rounded-sm px-4 ${quantity == 1 && 'cursor-not-allowed bg-gray-100 ' || 'bg-gray-200'} `}>-</button>
                         <span className='w-10 text-center'>{quantity}</span>
                         <button onClick={handleIncrease} className={` w-fit  text-gray-400 text-2xl ${quantity == 15 ? ' bg-gray-100 cursor-not-allowed' : 'bg-gray-200'}  rounded-sm px-3`}>+</button>
                     </p>
-                  <p className='text-red-400 font-medium   text-end lg:text-start md:text-start  w-full items-center'>  ৳ {price}</p>
-                  </p>
+                    <p className='text-red-400 font-medium   text-end lg:text-start md:text-start  w-full items-center'>  ৳ {price}</p>
+                </p>
 
             </div>
         </div>

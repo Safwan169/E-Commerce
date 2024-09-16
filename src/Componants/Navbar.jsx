@@ -34,10 +34,13 @@ const Navbar = () => {
 
   const { cartLength } = useContext(context)
 
-  const [data] = Test()
+  const [data, , , isFetching] = Test()
   const [totalNumber, setTotalnumber] = useState()
 
-  console.log(totalNumber)
+
+
+  console.log(data,'data')
+
 
   useEffect(() => {
 
@@ -48,9 +51,12 @@ const Navbar = () => {
 
     }, 0)
     setTotalnumber(quantity)
+    // console.log(quantity, 'here')
 
 
-  }, [cartLength,data])
+
+  },[isFetching])
+
 
 
 

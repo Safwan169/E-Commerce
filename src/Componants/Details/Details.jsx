@@ -15,7 +15,7 @@ import Test from '../Test';
 const Details = () => {
   const location = useLocation()
 
-  const [, ,refetch]= Test()
+  const [, refetch] = Test()
   // console.log(data)
 
 
@@ -90,33 +90,43 @@ const Details = () => {
         price: data1?.price,
         description: data1?.description,
         quantity,
-        id:data1?._id
+        id: data1?._id
 
 
       }
 
       axios.post(`https://e-commerce-server-side-beta.vercel.app/cart`, data)
-        .then(
+        .then(res => {
+
+          if (res?.data?.acknowledged) {
+
+
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Successfully Add To The Cart",
+              showConfirmButton: false,
+              timer: 1500
+            }),
+
+
+              refetch()
+
+          }
+
+
+        }
 
 
 
 
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Successfully Add To The Cart",
-            showConfirmButton: false,
-            timer: 1500
-        }),
-
-
-        refetch()
 
 
 
-       
 
-      
+
+
 
 
         )
