@@ -39,7 +39,7 @@ const AddCart = () => {
 
 
           {
-            isFetching ? <div className=' absolute  left-1/2 -translate-x-1/2  top-1/2   mx-auto items-center justify-center  text-justify flex '>loading....</div> : '  '
+            isFetching ? <div className=' absolute  left-1/2 -translate-x-1/2 h-full top-1/2   mx-auto items-center justify-center  text-justify flex '>loading....</div> : '  '
           }
       </div>
     </div>
