@@ -12,6 +12,9 @@ const CartStyle = ({ data1 }) => {
     const { setCartLength, cartLength } = useContext(context)
 
 
+    const MainPrice=Math.ceil(price)*100
+
+
 
 
     const des = description.split(' ')
@@ -146,7 +149,7 @@ const CartStyle = ({ data1 }) => {
                         <span className='w-10 text-center'>{quantity}</span>
                         <button onClick={handleIncrease} className={` w-fit  text-gray-400 text-2xl ${quantity == 15 ? ' bg-gray-100 cursor-not-allowed' : 'bg-gray-200'}  rounded-sm px-3`}>+</button>
                     </p>
-                    <p className='text-red-400 font-medium   text-end lg:text-start md:text-start  w-full items-center'>  ৳ {price}</p>
+                    <p className='text-red-400 font-medium   text-end lg:text-start md:text-start  w-full items-center'>  ৳ {MainPrice}</p>
                 </p>
 
             </div>
