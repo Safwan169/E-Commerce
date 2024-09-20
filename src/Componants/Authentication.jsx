@@ -48,6 +48,7 @@ const [search,setSearchText]=useState()
 const [searchData,setSearchData]=useState()
 const [load,setLoad]=useState(false)
 const [cartLength,setCartLength]=useState(false)
+const [TotalCartItem,setTotalCartItem]=useState()
 // console.log(search)
 
 useEffect(() => {
@@ -75,7 +76,10 @@ const data={
     load,
     search,
     setCartLength,
-    cartLength
+    cartLength,
+    setTotalCartItem,
+    TotalCartItem
+
     
 }
 

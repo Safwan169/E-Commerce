@@ -32,7 +32,7 @@ const Navbar = () => {
 
   const navigate = useNavigate()
 
-  const { cartLength } = useContext(context)
+  const { setTotalCartItem } = useContext(context)
 
   const [data, , , isFetching] = Test()
   const [totalNumber, setTotalnumber] = useState()
@@ -50,7 +50,8 @@ const Navbar = () => {
       return (acc + currentValue?.quantity)
 
     }, 0)
-    setTotalnumber(quantity)
+    setTotalnumber(quantity),
+    setTotalCartItem(quantity)
     // console.log(quantity, 'here')
 
 
