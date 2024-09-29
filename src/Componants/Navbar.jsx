@@ -39,7 +39,6 @@ const Navbar = () => {
 
 
 
-  // console.log(data,'data')
 
 
   useEffect(() => {

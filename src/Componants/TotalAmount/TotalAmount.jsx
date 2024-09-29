@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Test from '../Test';
 import { context } from '../Authentication';
+import axios from 'axios';
 
 const TotalAmount = () => {
     const { TotalCartItem } = useContext(context)
@@ -20,6 +21,23 @@ const TotalAmount = () => {
         }
 
     }, [data])
+
+    const handleSubmit=()=>{
+
+        const TotalAmount=data?.length * 65 + totalAmount * 100
+
+        axios.post('http://localhost:5000/checkOut',{TotalAmount})
+        .then((response)=>{ 
+            console.log(response.data)
+            
+            if (response?.data?.url) {
+                window.location.href = response.data.url; // Redirect to SSLCommerz payment page
+            }        
+        })
+
+
+
+    }
     return (
         <>
             <div className='bg-white md:mt-5 mt-5 lg:mt-0 p-6 space-y-5'>
@@ -37,7 +55,7 @@ const TotalAmount = () => {
 
 
                 {/* for coupon */}
-                <form className="flex items-center w-full mx-auto">
+                <form  className="flex items-center w-full mx-auto">
                     <label for="simple-search" className="sr-only">Search</label>
                     <div className="relative w-full">
 
@@ -56,7 +74,7 @@ const TotalAmount = () => {
 
                 </p>
 
-                <button type="submit" className="px-6    w-full text-sm font-medium text-white bg-orange-500 rounded-sm  hover:bg-orange-600  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <button onClick={handleSubmit} type="submit" className="px-6    w-full text-sm font-medium text-white bg-orange-500 rounded-sm  hover:bg-orange-600  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 
                     PROCEED TO CHECKOUT ({TotalCartItem})
                     
