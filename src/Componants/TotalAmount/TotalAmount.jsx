@@ -28,7 +28,7 @@ const TotalAmount = () => {
 
         axios.post('http://localhost:5000/checkOut',{TotalAmount})
         .then((response)=>{ 
-            console.log(response.data)
+            console.log(response)
             
             if (response?.data?.url) {
                 window.location.href = response.data.url; // Redirect to SSLCommerz payment page

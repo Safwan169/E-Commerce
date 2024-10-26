@@ -35,7 +35,8 @@ const AddCart = () => {
 
 
           {
-            cartLength ? <div className='  bg-opacity-25 fixed top-0 bg-slate-900  font-white left-1/2 -translate-x-1/2   h-svh w-full    mx-auto items-center justify-center  text-justify flex '><Lottie  animationData={animation}></Lottie></div> : '  '
+            cartLength ? <div className='  bg-opacity-25 fixed top-0 bg-slate-900  font-white left-1/2 -translate-x-1/2   h-svh w-full    mx-auto items-center justify-center  text-justify flex '>
+              <Lottie  animationData={animation}></Lottie></div> : '  '
           }
       </div>
     </>
