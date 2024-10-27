@@ -17,8 +17,8 @@ const Main_Layout = () => {
        <Outlet ></Outlet>
 
        </div>
-       <LiveChat></LiveChat>
-       <AdminChat></AdminChat>
+       {/* <LiveChat></LiveChat>
+       <AdminChat></AdminChat> */}
         { location?.pathname!=='/login'&& <Footer></Footer>}
             
         </>
